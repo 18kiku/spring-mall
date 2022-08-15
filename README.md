@@ -96,76 +96,19 @@ DB: Oracle
 
 
 
-
-
-
-
-
-
 ## 5. 테이블 정의
 
-테이블ID	MEMBER			
-순번	컬럼ID	타입 및 길이	NULL	PK	FK
-1	ID	VARCHAR2(30)	Not Null	Y	　
-2	PASSWORD	VARCHAR2(30)	Not Null	　	　
-3	NAME	VARCHAR2(30)	Not Null	　	　
-4	BIRTH	VARCHAR2(30)	Not Null	　	　
-5	GENDER	VARCHAR2(30)	Not Null	　	　
-6	EMAIL	VARCHAR2(50)	Not Null	　	　
-7	TEL	VARCHAR2(20)	Not Null	　	　
-8	POSTCODE	VARCHAR2(10)	Not Null	　	　
-9	ADDRESS	VARCHAR2(100)	Not Null	　	　
-10	ADDRESS_DETAIL	VARCHAR2(100)	Not Null	　	　
-11	REG_DATE	TIMESTAMP(6)	Null	　	　
+![member](https://user-images.githubusercontent.com/98327681/184667588-a8cfa01e-6984-498a-bceb-c9ab6cd51ced.PNG)
 
-테이블ID	MANAGEMENT			
-순번	컬럼ID	타입 및 길이	NULL	PK	FK
-1	MANAGEMENT_ID	VARCHAR2(30)	Not Null	Y	　
-2	MANAGEMENT_PASSWORD	VARCHAR2(30)	Not Null	　	　
-3	NAME	VARCHAR2(30)	Not Null	　	　
-4	ROLE	VARCHAR2(30)	Not Null	　	　
+![management](https://user-images.githubusercontent.com/98327681/184667603-ec592bb0-e017-42c5-8049-f4b8add08788.PNG)
 
-테이블ID	PRODUCT			
-순번	컬럼ID	타입 및 길이	NULL	PK	FK
-1	PRODUCT_ID	NUMBER	Not Null	Y	　
-2	PRODUCT_CATEGORY	VARCHAR2(20)	Not Null	　	　
-3	PRODUCT_NAME	VARCHAR2(100)	Not Null	　	　
-4	PRODUCT_BRAND	VARCHAR2(30)	Not Null	　	　
-5	PRODUCT_SIZE	VARCHAR2(10)	Not Null	　	　
-6	PRODUCT_COLOR	VARCHAR2(30)	Not Null	　	　
-7	PRODUCT_PRICE	NUMBER	Not Null	　	　
-8	DISCOUNT_RATE	NUMBER	Not Null	　	　
-9	PRODUCT_STOCK	NUMBER	Not Null	　	　
-10	PRODUCT_IMAGE	VARCHAR2(300)	Null	　	　
-11	PRODUCT_DETAIL	VARCHAR2(300)	Null	　	　
-12	REG_DATE	TIMESTAMP(6)	Null	　	　
+![product](https://user-images.githubusercontent.com/98327681/184667625-b6cc1d2f-fe28-4674-b99e-4084bf76cd8f.PNG)
 
-테이블ID	CATEGORY			
-순번	컬럼ID	타입 및 길이	NULL	PK	FK
-1	CATEGORY_CODE	VARCHAR2(20)	Not Null	　	　
-2	CATEGORY_NAME	VARCHAR2(30)	Not Null	　	　
+![category](https://user-images.githubusercontent.com/98327681/184667633-38981fc9-a4b3-4696-b1d0-52d953d82386.PNG)
 
-테이블ID	CART			
-순번	컬럼ID	타입 및 길이	NULL	PK	FK
-1	CART_ID	NUMBER	Not Null	Y	　
-2	ORDERER_ID	VARCHAR2(30)	Not Null	　	　
-3	PRODUCT_ID	NUMBER	Not Null	　	Y
-4	ORDER_QUANTITY	NUMBER	Not Null	　	　
+![cart](https://user-images.githubusercontent.com/98327681/184667653-5755f487-75fd-487f-bb65-00ac5f971f23.PNG)
 
-테이블ID	ORDERS			
-순번	컬럼ID	타입 및 길이	NULL	PK	FK
-1	ORDER_ID	VARCHAR2(40)	Not Null	　	　
-2	ORDERER_ID	VARCHAR2(30)	Not Null	　	　
-3	PRODUCT_ID	NUMBER	Not Null	　	Y
-4	ORDER_QUANTITY	NUMBER	Not Null	　	　
-5	ORDER_AMOUNT	NUMBER	Not Null	　	　
-6	ORDER_DATE	TIMESTAMP(6)	Null	　	　
-7	ADDRESSEE	VARCHAR2(30)	Not Null	　	　
-8	TEL	VARCHAR2(20)	Not Null	　	　
-9	POSTCODE	VARCHAR2(100)	Not Null	　	　
-10	ADDRESS	VARCHAR2(100)	Not Null	　	　
-11	ADDRESS_DETAIL	VARCHAR2(100)	Not Null	　	　
-12	DELIVERY_STATE	VARCHAR2(20)	Null	　	　
+![orders](https://user-images.githubusercontent.com/98327681/184667666-a0dc5b50-c3b4-4cec-9d48-3506b6ce9033.PNG)
 
 
 
