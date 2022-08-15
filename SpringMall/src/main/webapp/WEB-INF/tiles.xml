@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+  <definition name="shop.main" template="/WEB-INF/views/mall/common/shopLayout.jsp">
+    <put-attribute name="title" value="Shop Main" />
+    <put-attribute name="header" value="/WEB-INF/views/mall/common/shopHeader.jsp" />
+    <put-attribute name="body" value="/WEB-INF/views/mall/shop/shopMain.jsp" />
+    <put-attribute name="footer" value="/WEB-INF/views/mall/common/shopFooter.jsp" />
+  </definition>
+  <definition name="shop.list" template="/WEB-INF/views/mall/common/shopLayout.jsp">
+    <put-attribute name="title" value="Shop List" />
+    <put-attribute name="header" value="/WEB-INF/views/mall/common/shopHeader.jsp" />
+    <put-attribute name="body" value="/WEB-INF/views/mall/shop/shopList.jsp" />
+    <put-attribute name="footer" value="/WEB-INF/views/mall/common/shopFooter.jsp" />
+  </definition>
+  <definition name="shop.detail" template="/WEB-INF/views/mall/common/shopLayout.jsp">
+    <put-attribute name="title" value="Shop detail" />
+    <put-attribute name="header" value="/WEB-INF/views/mall/common/shopHeader.jsp" />
+    <put-attribute name="body" value="/WEB-INF/views/mall/shop/shopDetail.jsp" />
+    <put-attribute name="footer" value="/WEB-INF/views/mall/common/shopFooter.jsp" />
+  </definition>
+  <definition name="login" template="/WEB-INF/views/mall/common/shopLayout.jsp">
+    <put-attribute name="title" value="login" />
+    <put-attribute name="header" value="/WEB-INF/views/mall/common/shopHeader.jsp" />
+    <put-attribute name="body" value="/WEB-INF/views/mall/login/login.jsp" />
+    <put-attribute name="footer" value="/WEB-INF/views/mall/common/shopFooter.jsp" />
+  </definition>
+  <definition name="memberInfo" template="/WEB-INF/views/mall/common/shopLayout.jsp">
+    <put-attribute name="title" value="Member Info" />
+    <put-attribute name="header" value="/WEB-INF/views/mall/common/shopHeader.jsp" />
+    <put-attribute name="body" value="/WEB-INF/views/mall/member/memberInfo.jsp" />
+    <put-attribute name="footer" value="/WEB-INF/views/mall/common/shopFooter.jsp" />
+  </definition>
+  <definition name="memberJoin" template="/WEB-INF/views/mall/common/shopLayout.jsp">
+    <put-attribute name="title" value="Member Join" />
+    <put-attribute name="header" value="/WEB-INF/views/mall/common/shopHeader.jsp" />
+    <put-attribute name="body" value="/WEB-INF/views/mall/member/memberJoin.jsp" />
+    <put-attribute name="footer" value="/WEB-INF/views/mall/common/shopFooter.jsp" />
+  </definition>
+  <definition name="cart.list" template="/WEB-INF/views/mall/common/shopLayout.jsp">
+    <put-attribute name="title" value="Cart List" />
+    <put-attribute name="header" value="/WEB-INF/views/mall/common/shopHeader.jsp" />
+    <put-attribute name="body" value="/WEB-INF/views/mall/cart/cartList.jsp" />
+    <put-attribute name="footer" value="/WEB-INF/views/mall/common/shopFooter.jsp" />
+  </definition>
+  <definition name="order.check" template="/WEB-INF/views/mall/common/shopLayout.jsp">
+    <put-attribute name="title" value="Order Check" />
+    <put-attribute name="header" value="/WEB-INF/views/mall/common/shopHeader.jsp" />
+    <put-attribute name="body" value="/WEB-INF/views/mall/order/orderCheck.jsp" />
+    <put-attribute name="footer" value="/WEB-INF/views/mall/common/shopFooter.jsp" />
+  </definition>
+  <definition name="order.list" template="/WEB-INF/views/mall/common/shopLayout.jsp">
+    <put-attribute name="title" value="Order List" />
+    <put-attribute name="header" value="/WEB-INF/views/mall/common/shopHeader.jsp" />
+    <put-attribute name="body" value="/WEB-INF/views/mall/order/orderList.jsp" />
+    <put-attribute name="footer" value="/WEB-INF/views/mall/common/shopFooter.jsp" />
+  </definition>
+</tiles-definitions>

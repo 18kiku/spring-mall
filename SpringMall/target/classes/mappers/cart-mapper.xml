@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "..//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="CartDAO">
+	<resultMap type="cart" id="cartResult">
+		<result property="cart_id" column="cart_id"/>
+		<result property="orderer_id" column="orderer_id"/>
+		<result property="product_id" column="product_id"/>
+		<result property="order_quantity" column="order_quantity"/>
+	</resultMap>
+	
+	<!-- cart 테이블에 행 insert -->
+	<insert id="insertCart">
+		<![CDATA[
+		insert into cart(cart_id, orderer_id, product_id, order_quantity) 
+		values(SEQ_CART.nextval, #{orderer_id}, #{product_id}, #{order_quantity})
+		]]>
+	</insert>
+	
+	<!-- cart 테이블에서 orerer_id가 같고 product_id가 같은 행의 order_quantity를 update -->
+	<update id="updateCart">
+		<![CDATA[
+		update cart set order_quantity=#{order_quantity} 
+		where orderer_id=#{orderer_id}
+		and product_id=#{product_id}
+		]]>
+	</update>
+	
+	<!-- cart 테이블에서 orderer_id가 같고 product_id가 같은 행을 delete (product_id가 중복되지 않도록 했기 때문에 항상 0 or 1 행 수행) -->
+	<delete id="deleteCart">
+		<![CDATA[
+		delete from cart 
+		where orderer_id = #{orderer_id}
+		and product_id = #{product_id}
+		]]>
+	</delete>
+	
+	<!-- cart 테이블에서 orderer_id가 같은 행 모두 delete -->
+	<delete id="deleteCartAll">
+		<![CDATA[
+		delete from cart where orderer_id=#{orderer_id}
+		]]>
+	</delete>
+	
+	<!-- never used -->
+	<select id="getCart" resultMap="cartResult">
+		<![CDATA[
+		select * from cart where cart_id=#{cart_id}
+		]]>
+	</select>
+	
+	<!-- cart 테이블에서 orderer_id가 같은 행 select. product의 정보도 필요하기 때문에 join -->
+	<select id="getCartList" resultMap="cartResult">
+		<![CDATA[
+		select * from cart join product
+		on cart.product_id = product.product_id
+		where orderer_id = #{orderer_id}
+		order by cart_id desc
+		]]>
+	</select>
+	
+	<!-- cart 테이블에서 orderer_id가 같고 product_id가 같은 행의 count를 select-->
+	<select id="checkCart" resultType="int">
+		<![CDATA[
+		select count(*) from cart
+		where orderer_id = #{orderer_id} 
+		and product_id = #{product_id}
+		]]>
+	</select>
+</mapper>					

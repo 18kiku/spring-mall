@@ -1,0 +1,55 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Hammersmith+One&family=Paytone+One&display=swap');
+.container {
+	width:400px;
+	margin:0 auto;
+}
+a {
+	text-decoration:none;
+	color: black;
+}
+/* 상단의 메인,서브 타이틀*/
+.m_title {
+	font-family:'Paytone One',sans-serif;
+	font-size:3em;
+	text-align:center;
+}
+.s_title {
+	font-family:'Do Hyeon',sans-serif;
+	font-size:2em;
+	text-align:center;
+	margin-bottom:30px
+}
+.admin {
+	text-align:right;
+}
+.c_logout {
+	text-align:right;
+	margin-bottom:20px;
+	font-size:0.9em;
+	font-weight:bold;
+}
+.c_logout a {
+	color: #99424f;
+}
+/* 테이블 메뉴*/
+table {
+	width:100%;
+	border-collapse:collapse;
+	border-top:3px solid gray;
+	border-bottom:3px solid gray;
+	border-left:hidden;
+	border-right:hidden;
+}
+tr {
+	height:50px;
+}
+th {
+	border:1px solid black;
+}
+.title_row {
+	background:rgba(204,255,204,0.5);
+}
+.a_row {
+	background: #f8f9fa;
+}

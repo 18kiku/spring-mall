@@ -1,0 +1,148 @@
+@charset "UTF-8";
+main { 
+	width: 1200px; 
+	margin: 0 auto;
+}
+<!-- 쇼핑몰 리스트 페이지:상품이 나열되는 페이지 --!><!-- 상품의 분류별 전체 보기 --!>/* 상품 분류*/
+.t_category {
+	margin-top:30px;
+}
+/* .d_category1{text-align:right;padding-bottom:10px;margin-left:20px;}.d_category1 .s_category1{display:inline-block;float:left;}.d_category1 .s_category11{font-size:1.1em;color:navy;}.d_category2{margin-left:20px;margin-bottom:10px;clear:both;}.d_category1 .s_category2 select{margin-right:20px;width:200px;height: 25px;}*/
+/* 상품 분류별 노출*/
+.c_products {
+	display: block;
+}
+.d_category3 {
+	position:relative;
+	text-align:center;
+	float:left;
+	font-size:0.9em;
+	margin-bottom:0;
+}
+.d_category3 a {
+	text-decoration:none;
+	color:#000;
+}
+.c_product {
+	display:inline-block;
+	width:250px;
+	height:350px;
+	margin:25px;
+}
+.d_category2 {
+	font-size:0.8em;
+	margin-bottom:15px;
+}
+.d_category2 .s_category21 {
+	color:#f1617d;
+}
+.c_product .c_p1 {
+	height:280px;
+	line-height:280px;
+	overflow:hidden;
+}
+.c_product .c_p1 img {
+	width:100%;
+	vertical-align:middle;
+}
+.c_product .c_p2,.c_product .c_p4 {
+	font-weight:bold;
+}
+.c_product .c_p3 {
+	font-size:0.95em;
+	color:#868e96;
+}
+.c_product .c_p2,.c_product .c_p3 {
+	white-space:nowrap;
+	overflow:hidden;
+	text-overflow:ellipsis;
+}
+.c_product .c_p2:hover,.c_product .c_p3:hover {
+	white-space:nowrap;
+	overflow:visible;
+}
+.c_product .s_p_discount {
+	clolor: #f00;
+}
+/* hover 효과*/
+.c_product2 {
+	display:none;
+}
+.c_product2 .c_p5,.c_product2 .c_p6 {
+	display:none;
+}
+.d_category3:hover .c_product2 {
+	position:absolute;
+	top:0;
+	left:0;
+	background:rgba(0,0,0,0.3);
+	text-align:center;
+	line-height:350px;
+	display:inline-block;
+	width:250px;
+	height:350px;
+	padding:10px;
+	margin:10px;
+}
+.d_category3:hover .c_p5,.d_category3:hover .c_p6 {
+	display:inline-block;
+	width:70px;
+	height:70px;
+	border:2px solid #fff;
+	background-color:rgba(255,255,255,0.3);
+	border-radius:50%;
+	margin:145px 5px 0 5px;
+	text-align:center;
+	line-height:70px;
+	font-size:0.9em;
+	font-weight:bold;
+	color:#fff;
+}
+.d_category3:hover .c_p5 a,.d_category3:hover .c_p6 a {
+	color: white;
+}
+/* 하단 - 페이징 영역*/
+.paging {
+    text-align: center;
+    margin-top: 20px;
+}
+.paging a {
+	text-decoration: none;
+	color: #fff;
+	background-color: #dee2e6;
+	border-radius: 5px;
+}
+.p_box {
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    padding: 5px;
+}
+.p_box:hover {
+    background: #495057;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 10px;
+}
+.p_box_choice {
+	width: 32px;
+    height: 22px;
+    padding: 5px;
+    background: #495057;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 10px;
+    box-shadow: 1px 1px 1px gray;
+}
+.p_box_choice:hover {
+	background: #495057;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 10px;
+}
+.p_box_bold {
+    font-weight: 900;
+}
+.clearfix {
+    clear: both;
+}

@@ -1,0 +1,59 @@
+수정하기
+
+MemberController	
+- login() : 
+	int로 고치고 반환값에따라 아이디가 존재하지 않습니다, 등 경고창 띄우기
+	전전페이지로는 돌아가는 방법 찾기, 모달을써보자
+
+- updateMember() :
+	업데이트가 완료됐다고 alert 띄우기 -> ajax사용으로 변경 @ResponseBody 추가
+
+- deleteMember() :
+	transaction 처리 필요. cart까지 삭제해야함
+
+OrderController
+- 공통 : 
+	login 상태가 아니라면 login 페이지로 이동한다.  그런데 이걸 aop로 한번에 모아서 처리할 수 있지 않을까? 찾아보자
+- checkOrder() :
+	-----아쉬운점 : jstl의 ${sessionScope."key"."value"}로 받아올수있었다 -----수정 완료
+	
+PaymentController
+- 결제 검증 구현하기
+
+orderCheck.jsp
+- 결제요청( function payment() )을 실행하기 전에 수령인의 정보 유효성 검사 추가하기
+--------------------------------------------------------
+
+제대로 작동 안 되는 부분
+
+1. 프로젝트 내부 resources 경로 안의 이미지는 출력이 되지만 로컬 경로의 이미지는 출력되지 않는다
+   하지만 로컬 경로에 file upload는 제대로 작동. ※ servlet-context에 설정한 경로에 대한 공부가 부족한 것 같다
+
+2. 페이징 처리.
+   2-1. 페이징처리시 마지막 페이지 하나가 더 생김. 페이징 처리에 대한 이해가 아직 부족한 것 같다.
+   2-2. 검색 기능 이용 시
+	2-2-1. productList의 페이징 처리 -> 1페이지에선 제대로 작동하지만 다른 페이지로 이동하려는 순간 페이징 처리가 풀린다
+	request로 searchKeword를 넘겨봤지만 실패
+
+
+
+	2-2-2.(해결완료) shopList의 페이징 처리 -> 1페이지에선 제대로 작동하지만 다른 페이지로 넘어가려고 하면 getProductCount에서 오류가 발생
+
+	해결해보기 : DAO에서 DB처리로 들어가기 직전의 파라미터인 pagingMap을 확인해봤다
+	
+	shopList의 페이징 처리 오류 확인	
+	ProductDTO(product_category=300, searchCondition=PRODUCT_CATEGORY, searchKeyword=300), block=BlockDTO(pageNum=1, amount=10)}
+	1페이지에서 product-mapper로 들어가기 전에 searchCondition도 searchKeyword도 알맞다
+	하지만 두번째페이지에선 searchKeyword가 null이다
+	
+	시도-> shopList.jsp의 페이징 처리 영역에서 shopList.do로 갈때 product_category 파라미터를 추가했다 -> 성공
+
+
+
+
+
+
+
+
+
+

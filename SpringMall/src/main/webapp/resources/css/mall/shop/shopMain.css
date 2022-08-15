@@ -1,0 +1,14 @@
+@charset "UTF-8";
+header { 
+	width: 1200px; 
+	margin: 0 auto;
+}
+.slider {
+	width: 1200px;
+}
+.slider img {
+	vertical-align:middle;
+}
+.main_img {
+	margin-bottom: 100px;
+}

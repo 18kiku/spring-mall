@@ -1,0 +1,50 @@
+@charset "UTF-8";
+/* 상단의 메인,서브 타이틀*/
+.t_title {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 40px;
+	text-align:center;
+	margin: 30px 0;
+}
+/* 중단 입력창 */
+.f_input {
+	width:450px;
+	text-align:center;
+	border:1px solid #ccc;
+	padding:10px;
+	margin:0 auto;
+}
+.f_input .c_id,.f_input .c_password {
+	height:45px;
+	margin-top:20px;
+	padding-left:5px;
+}
+.f_input .f_chk {
+	text-align:left;
+	margin:10px 0 0 10px;
+	margin-left:10px;
+	font-size:0.9em;
+	color:gray;
+}
+.f_input #btn_login {
+	width:425px;
+	height:47px;
+	margin-top:25px;
+	background: #4d4d4d;
+	color:white;
+	border: none;
+	font-size:16px;
+	font-weight:bold;
+	cursor:pointer;
+	margin-top:25px;
+	margin-bottom: 10px;
+}
+/* 하단 - 비밀번호 찾기,아이디 찾기,회원가입 */
+.f_a {
+	text-align:center;
+	margin-top:30px;
+	font-size:0.9em;
+}
+.f_a a {
+	color: lightgray;
+}

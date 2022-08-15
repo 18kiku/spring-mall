@@ -1,0 +1,65 @@
+@charset "UTF-8";
+<!-- 쇼핑몰 하단 페이지:모든 쇼핑몰의 하단에 포함되는 페이지 --!>.start_line {
+	clear:both;
+}
+.b_box1 {
+	font-size:14px;
+	color:#868e96;
+}
+.b_box2,.b_box3,.b_box4 {
+	font-size:13px;
+	color:#adb5bd;
+}
+.start_line {
+	border:1px solid #e9ecef;
+	margin:20px 0;
+}
+.b_line {
+	border:1px solid #e9ecef;
+	margin:20px 0;
+	clear: both;
+}
+/* b_box1 */
+.b_box1 {
+	margin: 20px 0;
+}
+.bb1 {
+	padding:5px;
+	margin:10px;
+}
+.bb1:first-child {
+	margin-left:0;
+}
+.bb1:nth-child(4) {
+	font-weight: bold;
+}
+/* b_box2 */
+.bb1 {
+	padding:5px;
+	margin:10px;
+}
+.b2_s1,.b2_s2 {
+	width:50%;
+}
+.b2_s1 {
+	float:left;
+}
+.b2_s2 {
+	float:right;
+}
+.c_b2 {
+	margin-bottom:8px;
+}
+.c_b2:nth-child(1),.c_b2:nth-child(5) {
+	font-size:14px;
+	font-weight:bold;
+	color:#495057;
+}
+.c_b2 span {
+	color:#1e94be;
+	font-weight: bold;
+}
+/* b_box3 */
+.bb3 {
+	margin-bottom: 8px;
+}
