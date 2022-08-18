@@ -139,7 +139,7 @@
 			
 			let answer = confirm('정말 탈퇴하시겠습니까?');
 			if(answer){
-				form.action = 'memberDelete.do?id=' + form.id + '&password=' + form.password;
+				form.action = 'memberDelete.do';
 				form.submit();
 			} else{
 				return;

@@ -39,7 +39,7 @@
 	</delete>
 	
 	<!-- cart 테이블에서 orderer_id가 같은 행 모두 delete -->
-	<delete id="deleteCartAll">
+	<delete id="deleteCartById">
 		<![CDATA[
 		delete from cart where orderer_id=#{orderer_id}
 		]]>

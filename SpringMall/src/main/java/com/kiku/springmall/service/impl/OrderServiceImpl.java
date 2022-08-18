@@ -20,7 +20,6 @@ public class OrderServiceImpl implements OrderService{
 	/* 주문 추가*/
 	@Override
 	public int insertOrder(OrderDTO dto) {
-		System.out.println("==> OrderServiceImpl - insertOrder()");
 		return orderDAO.insertOrder(dto);
 	}
 
@@ -28,7 +27,6 @@ public class OrderServiceImpl implements OrderService{
 	@Transactional(readOnly = true)
 	@Override
 	public List<OrderDTO> getOrder(OrderDTO dto) {
-		System.out.println("==> OrderServiceImpl - getOrder()");
 		return orderDAO.getOrder(dto);
 	}
 
@@ -36,7 +34,6 @@ public class OrderServiceImpl implements OrderService{
 	@Transactional(readOnly = true)
 	@Override
 	public List<OrderDTO> getOrderList(OrderDTO dto, BlockDTO block) {
-		System.out.println("==> OrderServiceImpl - getOrderList()");
 		return orderDAO.getOrderList(dto, block);
 	}
 
@@ -44,7 +41,6 @@ public class OrderServiceImpl implements OrderService{
 	@Transactional(readOnly = true)
 	@Override
 	public int getOrderCount(OrderDTO dto) {
-		System.out.println("==> OrderServiceImpl - getOrderCount()");
 		return orderDAO.getOrderCount(dto);
 	}
 

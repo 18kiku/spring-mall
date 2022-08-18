@@ -21,8 +21,6 @@ public class CartController {
 	/* member가 cart안의 상품 리스트를 조회 요청*/
 	@RequestMapping(value="/cartList.do")
 	public String cartList(CartDTO dto, Model model, HttpSession session) {
-		System.out.println("=> CartController - cartList");
-		
 		MemberDTO member = (MemberDTO)session.getAttribute("member"); // cart는 login 상태여야 하기 때문에 member 체크
 		if(member != null) {
 			dto.setOrderer_id(member.getId()); // login 상태라면 member의 id값 추가
@@ -37,8 +35,6 @@ public class CartController {
 	@ResponseBody
 	@RequestMapping(value="/cartInsert.do")
 	public int insertCart(CartDTO dto, Model model, HttpSession session) {
-		System.out.println("=> CartController - insertCart");
-		
 		MemberDTO member = (MemberDTO)session.getAttribute("member"); // login 체크
 		int message = 10917; // cartList.jsp에서 ajax를 사용했음. 결과 코드 번호를 받아서 처리하기 위한 message 값. login 상태가 아니라면 login 페이지로 보내는 코드 번호
 		if(member != null) {
@@ -67,8 +63,6 @@ public class CartController {
 	@ResponseBody
 	@RequestMapping(value="/cartUpdate.do")
 	public int updateCart(CartDTO dto, HttpSession session) {
-		System.out.println("=> CartController - updateCart");
-		
 		MemberDTO member = (MemberDTO)session.getAttribute("member"); // login 체크
 		if(member == null) {
 			return 10917; // login 페이지로 보내는 코드 번호
@@ -81,8 +75,6 @@ public class CartController {
 	@ResponseBody
 	@RequestMapping(value="/cartDelete.do")
 	public int deleteCart(CartDTO dto, HttpSession session) {
-		System.out.println("=> CartController - deleteCart");
-		
 		MemberDTO member = (MemberDTO)session.getAttribute("member");
 		if(member == null) {
 			return 10917; // login 페이지로 보내는 코드 번호
@@ -90,20 +82,5 @@ public class CartController {
 		
 		return cartService.deleteCart(dto); // delete 작업이 완료된 행 개수 반환
 	}
-
-	/* cartList.jsp에서 모든 상품 삭제 요청*/
-	@ResponseBody
-	@RequestMapping(value="/cartDeleteAll.do")
-	public int deleteCartAll(CartDTO dto, HttpSession session) {
-		System.out.println("=> CartController - deleteCartList");
-		
-		MemberDTO member = (MemberDTO)session.getAttribute("member");
-		if(member == null) {
-			return 10917; // login 페이지로 보내는 코드 번호
-		}
-		
-		return cartService.deleteCartAll(dto); // delete 작업이 완료된 행 개수 반환
-	}
-	
 	
 }

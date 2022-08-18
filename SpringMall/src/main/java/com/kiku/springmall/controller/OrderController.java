@@ -2,7 +2,6 @@ package com.kiku.springmall.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
@@ -10,9 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kiku.springmall.service.BlockDTO;
 import com.kiku.springmall.service.CartDTO;
@@ -40,8 +37,6 @@ public class OrderController {
 	 * 주문 전 상품, 가격, 배송 정보 확인 페이지 요청*/
 	@GetMapping("/orderCheck.do")
 	public String checkOrder(OrderDTO dto, Model model, HttpSession session){
-		System.out.println("=> OrderController orderCheck");
-		
 		MemberDTO member = (MemberDTO)session.getAttribute("member"); // login check
 		if(member == null) {
 			return "login"; // login 상태가 아니라면 login 페이지로 이동
@@ -67,8 +62,6 @@ public class OrderController {
 	/* orderCheck.jsp -> payment 수행이 완료되면 이곳으로 온다. orderer의 카트에서 결제한 상품을 삭제하고, 결제한 상품 목록을 보여준다.*/
 	@RequestMapping("/orderInsert.do")
 	public String insertOrder(OrderDTO dto, Model model, HttpSession session) {
-		System.out.println("=> OrderController insertOrder");
-		
 		MemberDTO member = (MemberDTO)session.getAttribute("member"); // login check
 		if(member == null) {
 			return "login"; // login 상태가 아니라면 login 페이지로 이동한다
@@ -91,8 +84,6 @@ public class OrderController {
 	/* shopHeader.jsp -> member가 주문한 상품의 목록을 조회한다 */
 	@RequestMapping("/orderList.do")
 	public String orderList(OrderDTO dto, BlockDTO block, Model model, HttpSession session) {
-		System.out.println("=> OrderController orderList");
-		
 		MemberDTO member = (MemberDTO)session.getAttribute("member"); // login check
 		if(member == null) {
 			return "login"; // login 상태가 아니라면 login 페이지로 이동한다. **********그런데 이걸 aop로 한번에 모아서 처리할 수 있지 않을까? 찾아보자

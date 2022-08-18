@@ -16,7 +16,7 @@
 		<a href="#"><span>고객센터</span></a>
 	</c:if>
 	<c:if test="${sessionScope.member !=null }">
-		<a href="memberInfo.do?id=${sessionScope.member.id }">${sessionScope.member.name }님</a>&ensp;|&ensp;
+		<a href="memberInfo.do">${sessionScope.member.name }님</a>&ensp;|&ensp;
 		<a href="memberLogout.do">로그아웃</a>&ensp;|&ensp; 
 		<a href="#"><span>고객센터</span></a>
 	</c:if>
@@ -25,7 +25,7 @@
 <div class="t_box2">
 	<%-- 구역2 (상단우측): 회원정보, 구매정보, 장바구니정보 --%>
 	<c:if test="${sessionScope.member !=null }">
-	<a href="memberInfo.do?id=${sessionScope.member.id }">
+	<a href="memberInfo.do">
 	<img alt="user-white" src="<spring:url value='/resources/img/user-white.png'/>" width="35" title="회원정보" class="t_box2_img1"> </a>
 	<a href="orderList.do?orderer_id=${sessionScope.member.id }">
 	<img alt="buy-white" src="<spring:url value='/resources/img/buy-white.png'/>" width="35" title="구매정보" class="t_box2_img2"> </a>

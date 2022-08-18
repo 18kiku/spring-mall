@@ -6,23 +6,19 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.kiku.springmall.service.BlockDTO;
-import com.kiku.springmall.service.MemberDTO;
 import com.kiku.springmall.service.PageDTO;
 import com.kiku.springmall.service.ProductDTO;
 import com.kiku.springmall.service.ProductService;
@@ -40,17 +36,12 @@ public class ProductController {
 	/* productList.jsp -> product 테이블에 상품 추가 요청 */
 	@GetMapping(value="/productInsert.do")
 	public String insertProduct() {
-		System.out.println("=> ProductController insertProduct()");
 		return "management/product/productInsert"; // 상품 추가 페이지로 이동
 	}
 	
 	/* productInsert.jsp -> 상품 추가 처리, form의 인코딩타입은 multipart -> MultipartHttpServletRequest로 file 요청 처리*/
 	@PostMapping(value="/productInsert.do")
 	public String insertProduct(ProductDTO dto, MultipartHttpServletRequest request) {
-		System.out.println("=> ProductController insertProduct(ProductDTO dto)");
-		System.out.println("product_images -> " + request.getFiles("images").getClass().getName());
-		System.out.println("product_details -> " + request.getFiles("images_detail").getClass().getName());
-		
 		if(request.getFiles("product_images").isEmpty()) {
 			File fileCheck = new File(UPLOAD_PATH); // 패스 체크
 			if(!fileCheck.exists()) fileCheck.mkdirs(); // 폴더가 없다면 생성
@@ -80,8 +71,6 @@ public class ProductController {
 	 * insertProduct 메소드와 동일하니 해당 메소드의 주석 참조*/
 	@RequestMapping(value="/productUpdate.do")
 	public String updateProduct(@ModelAttribute("product")ProductDTO dto, MultipartHttpServletRequest request) {
-		System.out.println("=> ProductController updateProduct()");
-		
 		if(dto.getProduct_image()!= null) {
 			File fileCheck = new File(UPLOAD_PATH); // 패스 체크
 			if(!fileCheck.exists()) fileCheck.mkdirs(); // 폴더가 없다면 생성
@@ -110,7 +99,6 @@ public class ProductController {
 	/* productList.jsp, productDetail.jsp -> product 테이블에서 상품 삭제*/
 	@RequestMapping(value="/productDelete.do")
 	public String deleteProduct(ProductDTO dto, BlockDTO block) {
-		System.out.println("=> ProductController deleteProduct()");
 		productService.deleteProduct(dto); // 상품 삭제 처리
 		return "redirect:productList.do?pageNum=" + block.getPageNum(); // 삭제 후 해당 페이지로 이동(상품의 삭제를 확인하기 위함)
 	}
@@ -118,7 +106,6 @@ public class ProductController {
 	/* productList.jsp -> 상품의 상세 정보 조회*/
 	@RequestMapping(value="/productDetail.do")
 	public String getProduct(ProductDTO dto, Model model) {
-		System.out.println("=> ProductController getProduct");
 		model.addAttribute("product", productService.getProduct(dto));
 		return "management/product/productDetail";
 	}
@@ -135,8 +122,6 @@ public class ProductController {
 	/* 상품 목록 조회, 검색 기능*/
 	@RequestMapping(value="/productList.do")
 	public String getProductList(ProductDTO dto, BlockDTO block, Model model, HttpServletRequest request){
-		System.out.println("=> ProductController getProductList");
-		
 		if(dto.getSearchCondition() == null) dto.setSearchCondition("PRODUCT_CATEGORY"); // 검색의 default는 PRODUCT_CATEGORY
 		if(dto.getSearchKeyword() == null) dto.setSearchKeyword(""); // DB 처리 시null 입력 방지를 위한 빈 문자열
 		

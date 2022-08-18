@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.kiku.springmall.service.CartDTO;
 import com.kiku.springmall.service.MemberDTO;
 import com.kiku.springmall.service.MemberService;
 
@@ -15,12 +16,14 @@ public class MemberServiceImpl implements MemberService{
 
 	@Autowired
 	private MemberDAO memberDAO;
+	
+	@Autowired
+	private CartDAO cartDAO;
 
 	/* member 테이블에 해당 멤버가 존재하는지 조회 후, 그 member의 정보를 가져온다. id, password 필요*/
 	@Transactional(readOnly = true)
 	@Override
 	public MemberDTO login(MemberDTO dto) {
-		System.out.println("==> MemberServiceImpl login");
 		return memberDAO.login(dto);
 	}
 
@@ -28,28 +31,28 @@ public class MemberServiceImpl implements MemberService{
 	@Transactional(readOnly = true)
 	@Override
 	public int isAdmin(MemberDTO dto) {
-		System.out.println("==> MemberServiceImpl isAdmin");
 		return memberDAO.isAdmin(dto);
 	}
 
 	/* member 테이블에 새로운 멤버 추가*/
 	@Override
 	public void insertMember(MemberDTO dto) {
-		System.out.println("==> MemberServiceImpl insertMember");
 		memberDAO.insertMember(dto);
 	}
 
 	/* member 테이블에서 해당 member의 정보 수정*/
 	@Override
 	public void updateMember(MemberDTO dto) {
-		System.out.println("==> MemberServiceImpl updateMember");
 		memberDAO.updateMember(dto);
 	}
 
 	/* member 테이블에서 해당 member 삭제*/
 	@Override
 	public void deleteMember(MemberDTO dto) {
-		System.out.println("==> MemberServiceImpl deleteMember");
+		CartDTO cart = new CartDTO();
+		cart.setOrderer_id(dto.getId());
+		cartDAO.deleteCartById(cart);
+		
 		memberDAO.deleteMember(dto);
 	}
 
@@ -57,7 +60,6 @@ public class MemberServiceImpl implements MemberService{
 	@Transactional(readOnly = true)
 	@Override
 	public MemberDTO getMember(MemberDTO dto) {
-		System.out.println("==> MemberServiceImpl getMember");
 		return memberDAO.getMember(dto);
 	}
 
@@ -65,7 +67,6 @@ public class MemberServiceImpl implements MemberService{
 	@Transactional(readOnly = true)
 	@Override
 	public List<MemberDTO> getMemberList(MemberDTO dto) {
-		System.out.println("==> MemberServiceImpl getMemberList");
 		return memberDAO.getMemberList(dto);
 	}
 

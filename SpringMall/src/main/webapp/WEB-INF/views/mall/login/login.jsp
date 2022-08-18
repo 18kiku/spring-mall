@@ -3,10 +3,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/mall/login/login.css?v">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
-	$(document).ready(function(){
-		let form = $("form[name='loginForm']");
-		
-	})
+
 	document.addEventListener("DOMContentLoaded", function(){
 		let form = document.loginForm;
 		form.id.focus();

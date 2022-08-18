@@ -18,7 +18,6 @@ import com.kiku.springmall.service.MemberDTO;
 import com.kiku.springmall.service.MemberService;
 
 @Controller
-@SessionAttributes
 public class MemberController {
 
 	@Autowired
@@ -27,7 +26,6 @@ public class MemberController {
 	/* 로그인 페이지 이동. (작업 x)*/
 	@GetMapping(value = "/memberLogin.do")
 	public String login() {
-		System.out.println("=> MemberController - login(get)");
 		return "login";
 	}
 
@@ -35,8 +33,6 @@ public class MemberController {
 	/* 로그인 처리. session 생성 (key: member, value : member)*/
 	@PostMapping(value = "/memberLogin.do")
 	public String login(MemberDTO dto, HttpSession session, HttpServletRequest request) {
-		System.out.println("=> MemberController - login(post)");
-		
 		MemberDTO member = memberService.login(dto); // memberService에게 login 작업 요청
 		if (member != null) {
 			session.setAttribute("member", member);
@@ -50,7 +46,6 @@ public class MemberController {
 	/* shopHeader.jsp -> 로그아웃. session 삭제*/
 	@RequestMapping(value = "/memberLogout.do")
 	public String logout(HttpSession session) {
-		System.out.println("=> MemberController - 로그아웃 처리");
 		session.invalidate();
 		return "redirect:shopMain.do";
 	}
@@ -60,7 +55,6 @@ public class MemberController {
 	/* shopHeader.jsp ->  member 추가 페이지로 이동. (작업 x)*/
 	@GetMapping("/memberJoin.do")
 	public String insertMember() {
-		System.out.println("=> MemberController - insertMember");
 		return "memberJoin";
 	}
 
@@ -84,17 +78,14 @@ public class MemberController {
 	/* member 테이블에 member 추가 페이지로 이동. (작업 o)*/
 	@PostMapping("/memberJoin.do")
 	public String insertMember(MemberDTO dto) {
-		System.out.println("=> MemberController - 회원등록 처리(DB)");
 		memberService.insertMember(dto); // memberService에게 memberJoin.jsp에서 받은 dto로 멤버 추가 작업 요청
 		return "login"; // 완료 후 로그인 페이지로 이동
 	}
 
 	/* memberInfo.jsp -> member 수정*/
 	@RequestMapping("/memberUpdate.do")
-	public String updateMember(@ModelAttribute("member") MemberDTO dto, Model model, HttpSession session) {
-		System.out.println("=> MemberController - 회원정보 업데이트");
-		
-		memberService.updateMember(dto); // **********업데이트가 완료됐다고 alert 띄우기 -> ajax사용으로 변경 @ResponseBody 추가
+	public String updateMember(MemberDTO dto, HttpSession session) {
+		memberService.updateMember(dto);
 		session.setAttribute("member", memberService.getMember(dto));
 		
 		return "memberInfo";
@@ -102,17 +93,15 @@ public class MemberController {
 
 	/* memberInfo.jsp -> member 삭제*/
 	@RequestMapping("/memberDelete.do")
-	public String deleteMember(MemberDTO dto) {
-		System.out.println("=> MemberController - 회원탈퇴"); // ******************transaction 처리 필요. cart까지 삭제해야함
+	public String deleteMember(MemberDTO dto, HttpSession session) {
 		memberService.deleteMember(dto); // memberService에게 delete 작업 요청
+		session.invalidate();
 		return "login";
 	}
 
 	/* shopHeader.jsp -> member 정보 확인 */
 	@RequestMapping("/memberInfo.do")
-	public String getMember(MemberDTO dto, Model model, HttpSession session) {
-		System.out.println("=> MemberController - 회원정보확인");
-		
+	public String getMember(Model model, HttpSession session) {
 		MemberDTO member = (MemberDTO)session.getAttribute("member"); // 멤버 정보 조회를 위해 session에 담긴 member(로그인 시 session에 member 정보를 담고 있기로 했음)를 저장
 		if (member != null) {
 			model.addAttribute("member", memberService.getMember(member)); // memberService에게 접속중인 멤버의 정보 조회 작업 요청
