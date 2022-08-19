@@ -59,13 +59,13 @@
 		</div>
 		<div class="s_menu1 sub">
 			<div>
-				<a href="shopList.do?product_category=111">SUBMENU</a>
+				<a href="shopList.do?productCategory=111">SUBMENU</a>
 			</div>
 			<div>
-				<a href="shopList.do?product_category=121">SUBMENU</a>
+				<a href="shopList.do?productCategory=121">SUBMENU</a>
 			</div>
 			<div>
-				<a href="shopList.do?product_category=131">SUBMENU</a>
+				<a href="shopList.do?productCategory=131">SUBMENU</a>
 			</div>
 		</div>
 	</div>
@@ -75,16 +75,16 @@
 		</div>
 		<div class="s_menu2 sub">
 			<div>
-				<a href="shopList.do?product_category=211">SUBMENU</a>
+				<a href="shopList.do?productCategory=211">SUBMENU</a>
 			</div>
 			<div>
-				<a href="shopList.do?product_category=221">SUBMENU</a>
+				<a href="shopList.do?productCategory=221">SUBMENU</a>
 			</div>
 			<div>
-				<a href="shopList.do?product_category=231">SUBMENU</a>
+				<a href="shopList.do?productCategory=231">SUBMENU</a>
 			</div>
 			<div>
-				<a href="shopList.do?product_category=241">SUBMENU</a>
+				<a href="shopList.do?productCategory=241">SUBMENU</a>
 			</div>
 		</div>
 	</div>
@@ -94,7 +94,7 @@
 		</div>
 		<div class="s_menu3 sub">
 			<div>
-				<a href="shopList.do?product_category=300">SUBMENU</a>
+				<a href="shopList.do?productCategory=300">SUBMENU</a>
 			</div>
 		</div>
 	</div>
@@ -104,10 +104,10 @@
 		</div>
 		<div class="s_menu4 sub">
 			<div>
-				<a href="shopList.do?product_category=411">SUBMENU</a>
+				<a href="shopList.do?productCategory=411">SUBMENU</a>
 			</div>
 			<div>
-				<a href="shopList.do?product_category=421">SUBMENU</a>
+				<a href="shopList.do?productCategory=421">SUBMENU</a>
 			</div>
 		</div>
 	</div>
@@ -117,10 +117,10 @@
 		</div>
 		<div class="s_menu5 sub">
 			<div>
-				<a href="shopList.do?product_category=500">SUBMENU</a>
+				<a href="shopList.do?productCategory=500">SUBMENU</a>
 			</div>
 			<div>
-				<a href="shopList.do?product_category=500">SUBMENU</a>
+				<a href="shopList.do?productCategory=500">SUBMENU</a>
 			</div>
 		</div>
 	</div>
@@ -130,10 +130,10 @@
 		</div>
 		<div class="s_menu6 sub">
 			<div>
-				<a href="shopList.do?product_category=600">SUBMENU</a>
+				<a href="shopList.do?productCategory=600">SUBMENU</a>
 			</div>
 			<div>
-				<a href="shopList.do?product_category=600">SUBMENU</a>
+				<a href="shopList.do?productCategory=600">SUBMENU</a>
 			</div>
 			
 		</div>

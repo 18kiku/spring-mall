@@ -6,26 +6,40 @@
 
 <mapper namespace="CartDAO">
 	<resultMap type="cart" id="cartResult">
-		<result property="cart_id" column="cart_id"/>
-		<result property="orderer_id" column="orderer_id"/>
-		<result property="product_id" column="product_id"/>
-		<result property="order_quantity" column="order_quantity"/>
+		<result property="cartId" column="cart_id"/>
+		<result property="ordererId" column="orderer_id"/>
+		<result property="productId" column="product_id"/>
+		<result property="orderQuantity" column="order_quantity"/>
+		<result property="createDate" column="create_date"/>
+		<result property="updateDate" column="update_date"/>
+		
+		<result property="productId" column="product_id"/>
+		<result property="productCategory" column="product_category"/>
+		<result property="productName" column="product_name"/>
+		<result property="productBrand" column="product_brand"/>
+		<result property="productSize" column="product_size"/>
+		<result property="productColor" column="product_color"/>
+		<result property="productPrice" column="product_price"/>
+		<result property="discountRate" column="discount_rate"/>
+		<result property="productStock" column="product_stock"/>
+		<result property="productImage" column="product_image"/>
+		<result property="productDetail" column="product_detail"/>
 	</resultMap>
 	
 	<!-- cart 테이블에 행 insert -->
 	<insert id="insertCart">
 		<![CDATA[
 		insert into cart(cart_id, orderer_id, product_id, order_quantity) 
-		values(SEQ_CART.nextval, #{orderer_id}, #{product_id}, #{order_quantity})
+		values(SEQ_CART.nextval, #{ordererId}, #{productId}, #{orderQuantity})
 		]]>
 	</insert>
 	
 	<!-- cart 테이블에서 orerer_id가 같고 product_id가 같은 행의 order_quantity를 update -->
 	<update id="updateCart">
 		<![CDATA[
-		update cart set order_quantity=#{order_quantity} 
-		where orderer_id=#{orderer_id}
-		and product_id=#{product_id}
+		update cart set order_quantity=#{orderQuantity}, update_date=sysdate
+		where orderer_id=#{ordererId}
+		and product_id=#{productId}
 		]]>
 	</update>
 	
@@ -33,15 +47,15 @@
 	<delete id="deleteCart">
 		<![CDATA[
 		delete from cart 
-		where orderer_id = #{orderer_id}
-		and product_id = #{product_id}
+		where orderer_id = #{ordererId}
+		and cart_id = #{cartId}
 		]]>
 	</delete>
 	
 	<!-- cart 테이블에서 orderer_id가 같은 행 모두 delete -->
 	<delete id="deleteCartById">
 		<![CDATA[
-		delete from cart where orderer_id=#{orderer_id}
+		delete from cart where orderer_id=#{ordererId}
 		]]>
 	</delete>
 	
@@ -57,7 +71,7 @@
 		<![CDATA[
 		select * from cart join product
 		on cart.product_id = product.product_id
-		where orderer_id = #{orderer_id}
+		where orderer_id = #{ordererId}
 		order by cart_id desc
 		]]>
 	</select>
@@ -66,8 +80,8 @@
 	<select id="checkCart" resultType="int">
 		<![CDATA[
 		select count(*) from cart
-		where orderer_id = #{orderer_id} 
-		and product_id = #{product_id}
+		where orderer_id = #{ordererId} 
+		and product_id = #{productId}
 		]]>
 	</select>
 </mapper>					

@@ -43,16 +43,16 @@
 	<table class="product">
 	<tr>
 		<th width="4%">
-			product_id
+			productId
 		</th>
 		<th width="13%">
 			product_category
 		</th>
 		<th width="7%">
-			product_image
+			productImage
 		</th>
 		<th width="23%">
-			product_name
+			productName
 		</th>
 		<th width="5%">
 			product_brand
@@ -85,64 +85,64 @@
 	
 		<td class="center">
 			<c:if test="${param.pageNum == null }">
-			<a href="productDetail.do?product_id=${product.product_id}&pageNum=1">${product.product_id }</a>	
+			<a href="productDetail.do?productId=${product.productId}&pageNum=1">${product.productId }</a>	
 			</c:if>
 			<c:if test="${param.pageNum != null }">
-			<a href="productDetail.do?product_id=${product.product_id}&pageNum=${param.pageNum}">${product.product_id }</a>	
+			<a href="productDetail.do?productId=${product.productId}&pageNum=${param.pageNum}">${product.productId }</a>	
 			</c:if>
 		</td>
 		<td class="center">
-			${product.product_category }
+			${product.productCategory }
 		</td>
 		<td class="center">
 			<c:if test="${param.pageNum == null }">
-			<a href="productDetail.do?product_id=${product.product_id}&pageNum=1">
-				<img alt="product_image" src="${pageContext.request.contextPath}/resources/img/${product.product_image }" width="60" height="60">
+			<a href="productDetail.do?productId=${product.productId}&pageNum=1">
+				<img alt="productImage" src="${pageContext.request.contextPath}/resources/img/${product.productImage }" width="60" height="60">
 			</a>	
 			</c:if>
 			<c:if test="${param.pageNum != null }">
-			<a href="productDetail.do?product_id=${product.product_id}&pageNum=${param.pageNum}">
-				<img alt="product_detail" src="${pageContext.request.contextPath}/resources/img/${product.product_image }" width="60" height="60">
+			<a href="productDetail.do?productId=${product.productId}&pageNum=${param.pageNum}">
+				<img alt="productDetail" src="${pageContext.request.contextPath}/resources/img/${product.productDetail }" width="60" height="60">
 			</a>	
 			</c:if>
 			
 		</td>
 		<td class="center">
 			<c:if test="${param.pageNum == null }">
-			<a href="productDetail.do?product_id=${product.product_id}&pageNum=1">${product.product_name }</a>	
+			<a href="productDetail.do?productId=${product.productId}&pageNum=1">${product.productName }</a>	
 			</c:if>
 			<c:if test="${param.pageNum != null }">
-			<a href="productDetail.do?product_id=${product.product_id}&pageNum=${param.pageNum}">${product.product_name }</a>	
+			<a href="productDetail.do?productId=${product.productId}&pageNum=${param.pageNum}">${product.productName }</a>	
 			</c:if>
 		</td>
 		<td class="center">
-			${product.product_brand }
+			${product.productBrand }
 		</td>
 		<td class="center">
-			${product.product_size }
+			${product.productSize }
 		</td>
 		<td class="center">
-			${product.product_color }
+			${product.productColor }
 		</td>
 		<td class="right">
-			${product.product_price }
+			${product.productPrice }
 		</td>
 		<td class="right">
-			${product.discount_rate }
+			${product.discountRate }
 		</td>
 		<td class="right">
-			${product.product_stock }
+			${product.productStock }
 		</td>
-		<fmt:formatDate var="reg_date" value="${product.reg_date }" pattern="yyyy/MM/dd"/>
+		<fmt:formatDate var="createDate" value="${product.createDate }" pattern="yyyy/MM/dd"/>
 		<td class="center">
-			${reg_date }
+			${createDate }
 		</td>
 		<td class="center">
 			<c:if test="${param.pageNum == null }">
-			<a href="productDelete.do?product_id=${product.product_id}&pageNum=1">delete</a>	
+			<a href="productDelete.do?productId=${product.productId}&pageNum=1">delete</a>	
 			</c:if>
 			<c:if test="${param.pageNum != null }">
-			<a href="productDelete.do?product_id=${product.product_id}&pageNum=${param.pageNum}">delete</a>	
+			<a href="productDelete.do?productId=${product.productId}&pageNum=${param.pageNum}">delete</a>	
 			</c:if>
 		</td>
 	</tr>

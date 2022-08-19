@@ -14,7 +14,10 @@
 		<result property="email" column="email"/>
 		<result property="tel" column="tel"/>
 		<result property="address" column="address"/>
-		<result property="reg_date" column="reg_date"/>
+		<result property="addressDetail" column="address_detail"/>
+		<result property="postcode" column="postcode"/>
+		<result property="createDate" column="create_date"/>
+		<result property="updateDate" column="update_date"/>
 	</resultMap>
 	
 	<!-- member 테이블에서 id가 같고 password가 같은 행 select (login시 사용) -->
@@ -38,14 +41,14 @@
 	<insert id="insertMember">		
 		<![CDATA[
 		insert into member(id, password, name, birth, gender, email, tel, address, address_detail, postcode) 
-		values(#{id}, #{password}, #{name}, #{birth}, #{gender}, #{email}, #{tel}, #{address}, #{address_detail}, #{postcode})
+		values(#{id}, #{password}, #{name}, #{birth}, #{gender}, #{email}, #{tel}, #{address}, #{addressDetail}, #{postcode})
 		]]>
 	</insert>
 
 	<!-- member 테이블에서 id가 같고 password가 같은 행 update -->
 	<update id="updateMember">
 		<![CDATA[
-		update member set password=#{password}, name=#{name}, birth=#{birth}, gender=#{gender}, email=#{email}, tel=#{tel}, address=#{address}, address_detail=#{address_detail}, postcode=#{postcode}
+		update member set password=#{password}, name=#{name}, birth=#{birth}, gender=#{gender}, email=#{email}, tel=#{tel}, address=#{address}, address_detail=#{addressDetail}, postcode=#{postcode}, update_date=sysdate
 		where id=#{id} and password=#{password}
 		]]>
 	</update>
@@ -67,7 +70,7 @@
 	<!-- member 테이블에서 모든 member select (아직 미사용) -->
 	<select id="getMemberList" resultMap="memberResult">
 		<![CDATA[
-		select * from member order by reg_date desc
+		select * from member order by create_date desc
 		]]>
 	</select>
 </mapper>					

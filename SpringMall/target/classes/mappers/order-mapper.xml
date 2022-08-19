@@ -6,26 +6,32 @@
 
 <mapper namespace="OrderDAO">
 	<resultMap type="order" id="orderResult">
-		<result property="order_id" column="order_id"/>
-		<result property="orderer_id" column="orderer_id"/>
-		<result property="product_id" column="product_id"/>
-		<result property="order_quantity" column="order_quantity"/>
-		<result property="order_amount" column="order_amount"/>
-		<result property="order_date" column="order_date"/>
+		<result property="orderId" column="order_id"/>
+		<result property="ordererId" column="orderer_id"/>
+		<result property="productId" column="product_id"/>
+		<result property="orderQuantity" column="order_quantity"/>
+		<result property="orderAmount" column="order_amount"/>
+		<result property="orderDate" column="order_date"/>
 		<result property="addressee" column="addressee"/>
 		<result property="tel" column="tel"/>
 		<result property="postcode" column="postcode"/>
 		<result property="address" column="address"/>
-		<result property="address_detail" column="address_detail"/>
-		<result property="delivery_state" column="delivery_state"/>
+		<result property="addressDetail" column="address_detail"/>
+		<result property="deliveryState" column="delivery_state"/>
+		<result property="updateDate" column="update_date"/>
+		
+		<result property="productName" column="product_name"/>
+		<result property="productPrice" column="product_price"/>
+		<result property="discountRate" column="discount_rate"/>
+		<result property="productImage" column="product_image"/>
 	</resultMap>
 
 	<!-- orders 테이블에 행 insert (order_date를 제외한 모든 컬럼 값 필요) -->
 	<insert id="insertOrder">
 		<![CDATA[
 		insert into orders(order_id, orderer_id, product_id, order_quantity, order_amount, addressee, tel, postcode, address, address_detail)
-					values(#{order_id}, #{orderer_id}, #{product_id}, #{order_quantity}, #{order_amount}, #{addressee}, #{tel},
-							#{postcode}, #{address}, #{address_detail}) 
+					values(#{orderId}, #{ordererId}, #{productId}, #{orderQuantity}, #{orderAmount}, #{addressee}, #{tel},
+							#{postcode}, #{address}, #{addressDetail}) 
 		]]>
 	</insert>
 	
@@ -34,7 +40,7 @@
 		<![CDATA[
 		select * from orders join product
 		on orders.product_id = product.product_id
-		where order_id=#{order_id}
+		where order_id=#{orderId}
 		]]>
 	</select>
 	
@@ -44,7 +50,7 @@
 		select * 
 		from (
 			select rs.*, row_number() over(order by order_date desc) as rnum 
-			from (select * from orders o join product p on o.product_id = p.product_id where orderer_id = #{order.orderer_id}) rs
+			from (select * from orders o join product p on o.product_id = p.product_id where orderer_id = #{order.ordererId}) rs
 		)
 		where rnum > ((#{block.pageNum}-1) * #{block.amount}) and rnum <= #{block.pageNum} * #{block.amount}
 		order by order_date desc
@@ -54,7 +60,7 @@
 	<select id="getOrderCount" resultType="int">
 		<![CDATA[
 		select count(*) from orders
-		where orderer_id = #{orderer_id}
+		where orderer_id = #{ordererId}
 		]]>
 	</select>
 </mapper>					

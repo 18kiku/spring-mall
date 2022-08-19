@@ -23,9 +23,9 @@
                 $(".checkbox_individual_cart").prop("checked", false);
             }
             $(".checkbox_individual_cart").on("click", function () {
-                let total_checkbox = $(".checkbox_individual_cart").length;
+                let totalCheckbox = $(".checkbox_individual_cart").length;
                 let checked = $(".checkbox_individual_cart:checked").length;
-                if (total_checkbox != checked) {
+                if (totalCheckbox != checked) {
                     $(".input_all_check").prop("checked", false);
                 } else {
                     $(".input_all_check").prop("checked", true);
@@ -58,14 +58,14 @@
             }
         });
         let updateForm = {
-            orderer_id: '${member.id}',
-            product_id: '',
-            order_quantity: ''
+            ordererId: '${member.id}',
+            productId: '',
+            orderQuantity: ''
         }
         /* 수량 수정 버튼 */
         $(".btn_quantity_modify").on("click", function () {
-            updateForm.product_id = $(this).data("product_id");
-            updateForm.order_quantity = $(this)
+            updateForm.productId = $(this).data("productId");
+            updateForm.orderQuantity = $(this)
                 .parent("td")
                 .find("input")
                 .val();
@@ -92,13 +92,12 @@
             })
         });
         let deleteForm = {
-            orderer_id: '',
-            product_id: ''
+            ordererId: '${member.id}',
+            cartId: ''
         }
         /* 장바구니 개별 삭제 버튼 */
         $(".btn_delete").on("click", function (e) {
-            deleteForm.orderer_id = $(this).data("orderer_id");
-            deleteForm.product_id = $(this).data("product_id");
+            deleteForm.cartId = $(this).data("cartId");
             $.ajax({
                 url: 'cartDelete.do',
                 type: 'POST',
@@ -122,10 +121,10 @@
         /* 장바구니 전체 삭제 버튼 */
         $(".input_all_delete").on("click", function (e) {
             $.ajax({
-                url: 'cartDeleteAll.do',
+                url: 'cartDeleteById.do',
                 type: 'POST',
                 data: {
-                    orderer_id: $(this).data("orderer_id")
+                    ordererId: $(this).data("ordererId")
                 },
                 success: function (message) {
                     if (message == 0) {
@@ -145,23 +144,23 @@
         });
         /* 주문 페이지 이동 */
         $(".btn_order").on("click", function () {
-            let form_contents = '';
+            let formContents = '';
             let orderNumber = 0;
             $(".td_cart_list").each(function (index, element) {
                 if ($(element).find(".checkbox_individual_cart").is(":checked") === true) {
-                    let product_id = $(element).find(".input_individual_product_id").val();
-                    let order_quantity = $(element).find(".input_individual_order_quantity").val();
-                    let order_amount = $(element).find(".input_individual_totalPrice").val();
-                    let product_id_input = "<input name='orderList[" + orderNumber + "].product_id' type='hidden' value='" + product_id + "'>";
-                    form_contents += product_id_input;
-                    let order_quantity_input = "<input name='orderList[" + orderNumber + "].order_quantity' type='hidden' value='" + order_quantity + "'>";
-                    form_contents += order_quantity_input;
-                    let order_amount_input = "<input name='orderList[" + orderNumber + "].order_amount' type='hidden' value='" + order_amount + "'>";
-                    form_contents += order_amount_input;
+                    let productId = $(element).find(".input_individual_product_id").val();
+                    let orderQuantity = $(element).find(".input_individual_order_quantity").val();
+                    let orderAmount = $(element).find(".input_individual_totalPrice").val();
+                    let productId_input = "<input name='orderList[" + orderNumber + "].productId' type='hidden' value='" + productId + "'>";
+                    formContents += productId_input;
+                    let orderQuantity_input = "<input name='orderList[" + orderNumber + "].orderQuantity' type='hidden' value='" + orderQuantity + "'>";
+                    formContents += orderQuantity_input;
+                    let orderAmount_input = "<input name='orderList[" + orderNumber + "].orderAmount' type='hidden' value='" + orderAmount + "'>";
+                    formContents += orderAmount_input;
                     orderNumber += 1;
                 }
             });
-            $(".orderForm").html(form_contents);
+            $(".orderForm").html(formContents);
             $(".orderForm").submit();
         });
     });
@@ -218,7 +217,7 @@
 				<!-- 체크박스 전체 여부 -->
 				<div class="div_all_input">
 					<span class="span_all_check"><input type="checkbox" class="input_all_check input_size_20" checked="checked">전체선택</span>
-					<input type="button" class="input_all_delete input_size_4020" data-orderer_id="${member.id }" value="전체 삭제">
+					<input type="button" class="input_all_delete input_size_4020" data-orderer-id="${member.id }" value="전체 삭제">
 				</div>			
 				<div class="clearfix"></div>
 				
@@ -244,36 +243,35 @@
 							<tr>
 								<td class="td_width_1 td_cart_list">
 									<input type="checkbox" class="checkbox_individual_cart input_size_20" checked="checked">
-									<input type="hidden" class="input_individual_product_price" value="${cart.product_price}">
+									<input type="hidden" class="input_individual_product_price" value="${cart.productPrice}">
 									<input type="hidden" class="input_individual_order_amount" value="${cart.salePrice}">
-									<input type="hidden" class="input_individual_order_quantity" value="${cart.order_quantity}">
+									<input type="hidden" class="input_individual_order_quantity" value="${cart.orderQuantity}">
 									<input type="hidden" class="input_individual_totalPrice" value="${cart.totalPrice}">
-									<input type="hidden" class="input_individual_product_id" value="${cart.product_id}">								
+									<input type="hidden" class="input_individual_product_id" value="${cart.productId}">								
 								</td>
 								<td class="td_width_2">
 									<div>
-										<img alt="product_image" src="/resources/img/${product.product_image }" width="60" height="60">
+										<img alt="product_image" src="${pageContext.request.contextPath}/resources/img/${cart.productImage }" width="60" height="60">
 									</div>								
 								</td>
-								<td class="td_width_3">${cart.product_name}</td>
+								<td class="td_width_3">${cart.productName}</td>
 								<td class="td_width_4 td_price">
-									<div class="list_price">정가 : <fmt:formatNumber value="${cart.product_price}" pattern="#,### 원" /></div><br>
-									<%-- 판매가 : <span class="red_color"><fmt:formatNumber value="${cart.product_price - (cart.product_price*cart.discount_rate/100)}" pattern="#,### 원" /></span> --%>
+									<div class="list_price">정가 : <fmt:formatNumber value="${cart.productPrice}" pattern="#,### 원" /></div><br>
 									판매가 : <span class="red_color"><fmt:formatNumber value="${cart.salePrice}" pattern="#,### 원" /></span>
 								</td>
 								<td class="td_width_4 table_text_align_center">
 									<div class="table_text_align_center div_quantity">
-										<input type="text" value="${cart.order_quantity}" class="input_quantity">	
+										<input type="text" value="${cart.orderQuantity}" class="input_quantity">	
 										<button class="btn_quantity btn_plus">+</button>
 										<button class="btn_quantity btn_minus">-</button>
 									</div>
-									<input type="button" class="btn_quantity_modify" data-product_id="${cart.product_id}" value="변경">
+									<input type="button" class="btn_quantity_modify" data-product-id="${cart.productId}" value="변경">
 								</td>
 								<td class="td_width_4 table_text_align_center">
 									<fmt:formatNumber value="${cart.totalPrice}" pattern="#,### 원" />
 								</td>
 								<td class="td_width_4 table_text_align_center">
-									<input type="button" class="btn_delete" data-orderer_id="${cart.orderer_id}" data-product_id="${cart.product_id }" value="삭제">
+									<input type="button" class="btn_delete" data-cart-id="${cart.cartId}" value="삭제">
 								</td>
 							</tr>
 						</c:forEach>
@@ -344,7 +342,7 @@
 			</div>
 			
 			<!-- 주문 form -->
-			<form action="orderCheck.do?orderer_id=${member.id}" method="get" class="orderForm">
+			<form action="orderCheck.do?ordererId=${member.id}" method="get" class="orderForm">
 
 			</form>
 		</div>

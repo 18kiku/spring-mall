@@ -15,9 +15,10 @@ public class MemberDTO {
 	private String tel;
 	private String postcode;
 	private String address;
-	private String address_detail;
-	private Timestamp reg_date;
+	private String addressDetail;
+	private Timestamp createDate;
+	private Timestamp updateDate;
 	
-	private String management_id;
-	private String management_password;
+	private String managementId;
+	private String managementPassword;
 }

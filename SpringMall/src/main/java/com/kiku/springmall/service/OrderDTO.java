@@ -10,31 +10,32 @@ public class OrderDTO {
 	
 	private List<OrderDTO> orderList;
 	
-	private String order_id;
-	private String orderer_id;
-	private int product_id;
-	private int order_quantity;
-	private int order_amount;
-	private Timestamp order_date;
+	private String orderId;
+	private String ordererId;
+	private int productId;
+	private int orderQuantity;
+	private int orderAmount;
+	private Timestamp orderDate;
 	private String addressee;
 	private String tel;
 	private String postcode;
 	private String address;
-	private String address_detail;
-	private String delivery_state;
+	private String addressDetail;
+	private String deliveryState;
+	private Timestamp updateDate;
 	
 	private int salePrice;
 	
 	// join
-	private String product_name;
-	private int product_price;
-	private int discount_rate;
-	private String product_image;
+	private String productName;
+	private int productPrice;
+	private int discountRate;
+	private String productImage;
 	
 	private String searchCondition;
 	private String searchKeyword;
 	
 	public int getSalePrice() {
-		return product_price - (product_price*discount_rate/100);
+		return productPrice - (productPrice*discountRate/100);
 	}
 }

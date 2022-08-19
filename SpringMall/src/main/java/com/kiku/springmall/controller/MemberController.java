@@ -29,7 +29,6 @@ public class MemberController {
 		return "login";
 	}
 
-	// ***********************int로 고치고 반환값에따라 아이디가 존재하지 않습니다, 등 경고창 띄우기
 	/* 로그인 처리. session 생성 (key: member, value : member)*/
 	@PostMapping(value = "/memberLogin.do")
 	public String login(MemberDTO dto, HttpSession session, HttpServletRequest request) {
@@ -50,7 +49,6 @@ public class MemberController {
 		return "redirect:shopMain.do";
 	}
 
-	// ######################
 	// 회원가입, 수정, 삭제, 상세확인
 	/* shopHeader.jsp ->  member 추가 페이지로 이동. (작업 x)*/
 	@GetMapping("/memberJoin.do")

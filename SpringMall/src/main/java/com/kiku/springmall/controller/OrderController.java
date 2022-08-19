@@ -46,11 +46,11 @@ public class OrderController {
 		ProductDTO product = null;
 		for(OrderDTO order : dto.getOrderList()) { // 이전 페이지에서 OrderDTO.orderList에 모든 주문 정보를 담아왔음. 상품별 주문정보 삽입을 위한 for문
 			product = new ProductDTO();
-			product.setProduct_id(order.getProduct_id()); // orders 테이블에는 상품 정보가 없기 때문에 미리 삽입
-			order.setProduct_image(productService.getProduct(product).getProduct_image());
-			order.setProduct_name(productService.getProduct(product).getProduct_name());
-			order.setProduct_price(productService.getProduct(product).getProduct_price());
-			order.setDiscount_rate(productService.getProduct(product).getDiscount_rate());
+			product.setProductId(order.getProductId()); // orders 테이블에는 상품 정보가 없기 때문에 미리 삽입
+			order.setProductImage(productService.getProduct(product).getProductImage());
+			order.setProductName(productService.getProduct(product).getProductName());
+			order.setProductPrice(productService.getProduct(product).getProductPrice());
+			order.setDiscountRate(productService.getProduct(product).getDiscountRate());
 			orderList.add(order); // 주문 정보를 리스트에 추가
 		
 		}
@@ -70,8 +70,8 @@ public class OrderController {
 		for(OrderDTO order : dto.getOrderList()) { // 결제한 상품의 리스트가 담긴 리스트를 for문을 수행한다. 카트에서 각 상품을 삭제한다
 			orderService.insertOrder(order);
 			CartDTO cart = new CartDTO();
-			cart.setOrderer_id(order.getOrderer_id());
-			cart.setProduct_id(order.getProduct_id());
+			cart.setOrdererId(order.getOrdererId());
+			cart.setProductId(order.getProductId());
 			CartService.deleteCart(cart); // 주문 완료 후 장바구니 삭제
 		}
 		
@@ -89,7 +89,7 @@ public class OrderController {
 			return "login"; // login 상태가 아니라면 login 페이지로 이동한다. **********그런데 이걸 aop로 한번에 모아서 처리할 수 있지 않을까? 찾아보자
 		}
 		
-		dto.setOrderer_id(member.getId()); // 주문자 id 입력
+		dto.setOrdererId(member.getId()); // 주문자 id 입력
 		int totalCount = orderService.getOrderCount(dto); // 페이징 처리를 위해 상품 개수 조회
 		model.addAttribute("pageDTO", new PageDTO(block, totalCount)); // 페이징 처리
 		model.addAttribute("orderList", orderService.getOrderList(dto, block)); // 상품 목록 조회

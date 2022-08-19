@@ -4,8 +4,8 @@ import lombok.Data;
 
 @Data
 public class ManagementDTO {
-	private String management_id;
-	private String management_password;
+	private String managementId;
+	private String managementPassword;
 	private String name;
 	private String role;
 }

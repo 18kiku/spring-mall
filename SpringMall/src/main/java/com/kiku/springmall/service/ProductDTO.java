@@ -6,21 +6,22 @@ import lombok.Data;
 
 @Data
 public class ProductDTO {
-	private int product_id;
-	private String product_category;
-	private String product_name;
-	private String product_brand;
-	private String product_size;
-	private String product_color;
-	private int product_price;
-	private int discount_rate;
-	private int product_stock;
-	private String product_image;
-	private String product_detail;
-	private Timestamp reg_date;
+	private int productId;
+	private String productCategory;
+	private String productName;
+	private String productBrand;
+	private String productSize;
+	private String productColor;
+	private int productPrice;
+	private int discountRate;
+	private int productStock;
+	private String productImage;
+	private String productDetail;
+	private Timestamp createDate;
+	private Timestamp updateDate;
 	
-	private String category_code;
-	private String category_name;
+	private String categoryCode;
+	private String categoryName;
 	
 	private String searchCondition;
 	private String searchKeyword;

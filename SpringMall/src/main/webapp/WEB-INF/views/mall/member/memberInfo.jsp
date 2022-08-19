@@ -106,7 +106,7 @@
 				address.focus();
 				return;
 			}
-			if(form.address_detail.value.length == 0){
+			if(form.addressDetail.value.length == 0){
 				alert(`상세주소를 입력해주세요.`);
 				address.focus();
 				return;
@@ -232,7 +232,7 @@
 		<td>
 			<input type="button" value="주소찾기" id="btn_address"><br>
 			<input type="text" name="address" value="${sessionScope.member.address }" size=49><br>
-			<input type="text" name="address_detail" value="${sessionScope.member.address_detail }" size=49>
+			<input type="text" name="addressDetail" value="${sessionScope.member.addressDetail }" size=49>
 			<input type="hidden" name="postcode" value="${sessionScope.member.postcode }">
 		</td>
 	</tr>
@@ -241,7 +241,7 @@
 			가입일자
 		</th>
 		<td>
-			<input type="text" name="reg_date" value="${sessionScope.member.reg_date }">
+			<input type="text" name="createDate" value="${sessionScope.member.createDate }">
 		</td>
 	</tr>
 	</table>

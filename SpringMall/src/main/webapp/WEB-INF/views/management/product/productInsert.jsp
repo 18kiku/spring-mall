@@ -32,7 +32,7 @@
 				</th>
 				<!-- select로 고치기 -->
 				<td>
-					<input type="text" name="product_category" value="600">
+					<input type="text" name="productCategory" value="600">
 				</td>
 			</tr>
 			<tr>
@@ -40,7 +40,7 @@
 					product_name
 				</th>
 				<td>
-					<input type="text" name="product_name" value="test">
+					<input type="text" name="productName" value="test">
 				</td>
 			</tr>
 			<tr>
@@ -48,7 +48,7 @@
 					product_brand
 				</th>
 				<td>
-					<input type="text" name="product_brand" value="test">
+					<input type="text" name="productBrand" value="test">
 				</td>
 			</tr>
 			<tr>
@@ -56,7 +56,7 @@
 					product_size
 				</th>
 				<td>
-					<input type="text" name="product_size" value="test">
+					<input type="text" name="productSize" value="test">
 				</td>
 			</tr>
 			<tr>
@@ -64,7 +64,7 @@
 					product_color
 				</th>
 				<td>
-					<input type="text" name="product_color" value="test">
+					<input type="text" name="productColor" value="test">
 				</td>
 			</tr>
 			<tr>
@@ -72,7 +72,7 @@
 					product_price
 				</th>
 				<td>
-					<input type="number" name="product_price" value="100000">
+					<input type="number" name="productPrice" value="100000">
 				</td>
 			</tr>
 			<tr>
@@ -80,7 +80,7 @@
 					discount_rate
 				</th>
 				<td>
-					<input type="number" name="discount_rate" value="10">
+					<input type="number" name="discountRate" value="10">
 				</td>
 			</tr>
 			<tr>
@@ -88,7 +88,7 @@
 					product_stock
 				</th>
 				<td>
-					<input type="number" name="product_stock" value="50">
+					<input type="number" name="productStock" value="50">
 				</td>
 			</tr>
 			<tr>
@@ -96,7 +96,7 @@
 					product_image
 				</th>
 				<td>
-					<input type="file" name="product_images">
+					<input type="file" name="productImages">
 				</td>
 			</tr>
 			<tr>
@@ -104,7 +104,7 @@
 					product_detail
 				</th>
 				<td>
-					<input type="file" name="product_details" multiple>
+					<input type="file" name="productDetails" multiple>
 				</td>
 			</tr>
 			</table>

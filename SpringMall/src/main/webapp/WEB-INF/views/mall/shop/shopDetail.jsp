@@ -20,13 +20,13 @@
             }
         });
         let cartForm = {
-        		orderer_id: '${member.id}',
-        		product_id: '${product.product_id}',
-        		order_quantity: ''
+        		ordererId: '${member.id}',
+        		productId: '${product.productId}',
+        		orderQuantity: ''
         }
         // 장바구니 추가 버튼
         $(".btn_cart").on("click", function (e) {
-        	cartForm.order_quantity = $(".input_quantity").val();
+        	cartForm.orderQuantity = $(".input_quantity").val();
             $.ajax({
                 url: 'cartInsert.do',
                 type: 'POST',
@@ -54,17 +54,17 @@
         });
         /* 구매 버튼 */
         $(".btn_order").on("click", function () {
-        	let orderer_id = $("input[name='orderList[0].orderer_id']").val();
-        	let order_quantity = $(".input_quantity").val();
-			let order_amount = $(".input_discount_price").val() * $(".input_quantity").val();
+        	let ordererId = $("input[name='orderList[0].ordererId']").val();
+        	let orderQuantity = $(".input_quantity").val();
+			let orderAmount = $(".input_discount_price").val() * $(".input_quantity").val();
 			
 			if(!orderer_id){
 				alert('로그인을 해주세요');
 				location = 'memberLogin.do';
 				return;
 			}
-			$(".orderForm").find("input[name='orderList[0].order_quantity']").val(order_quantity);
-			$(".orderForm").find("input[name='orderList[0].order_amount']").val(order_amount);
+			$(".orderForm").find("input[name='orderList[0].orderQuantity']").val(orderQuantity);
+			$(".orderForm").find("input[name='orderList[0].orderAmount']").val(orderAmount);
 			$(".orderForm").submit();
 			
         });
@@ -79,41 +79,41 @@
 			<div class="content_top">
 				<div class="dt_left_area">
 					<div class="image_wrap">
-						<img alt="product_image" src="${pageContext.request.contextPath}/resources/img/${product.product_image }">
+						<img alt="product_image" src="${pageContext.request.contextPath}/resources/img/${product.productImage }">
 					</div>				
 				</div>
 				<div class="dt_right_area">
 					<div class="title">
 						<h1>
-							${product.product_name}
+							${product.productName}
 						</h1>
 					</div>
 					<div class="line"></div>
 					<div class="brand">
 						 <span>
-						 	브랜드 | ${product.product_brand} 
+						 	브랜드 | ${product.productBrand} 
 						 </span>
 					</div>
 					<div class="line"></div>
 					<div class="color">
 						 <span>
-						 	색상 | &emsp;${product.product_color} 
+						 	색상 | &emsp;${product.productColor} 
 						 </span>
 					</div>
 					<div class="line"></div>
 					<div class="size">
 						 <span>
-						 	사이즈 | ${product.product_size} 
+						 	사이즈 | ${product.productSize} 
 						 </span>
 					</div>
 					<div class="line"></div>
 					<div class="price">
-						<div class="list_price">정가 : <fmt:formatNumber value="${product.product_price}" pattern="#,### 원" /></div>
+						<div class="list_price">정가 : <fmt:formatNumber value="${product.productPrice}" pattern="#,### 원" /></div>
 						<div class="discount_price">
-							판매가 : <span class="number_discount_price"><fmt:formatNumber value="${product.product_price - (product.product_price*product.discount_rate/100)}" pattern="#,### 원" /></span>
-							<input type="hidden" class="input_discount_price" value="${product.product_price - (product.product_price*product.discount_rate/100)}"> 
-							[<fmt:formatNumber value="${product.discount_rate}" pattern="###" />% 
-							<fmt:formatNumber value="${product.product_price*product.discount_rate}" pattern="#,### 원" /> 할인]
+							판매가 : <span class="number_discount_price"><fmt:formatNumber value="${product.productPrice - (product.productPrice*product.discountRate/100)}" pattern="#,### 원" /></span>
+							<input type="hidden" class="input_discount_price" value="${product.productPrice - (product.productPrice*product.discountRate/100)}"> 
+							[<fmt:formatNumber value="${product.discountRate}" pattern="###" />% 
+							<fmt:formatNumber value="${product.productPrice*product.discountRate}" pattern="#,### 원" /> 할인]
 						</div>						
 					</div>			
 					<div class="line">
@@ -140,15 +140,15 @@
 			<div class="content_middle">
 				<h3>상품 상세 정보</h3>
 				<div class="product_detail">
-					<img alt="product_detail" src="${pageContext.request.contextPath}/resources/img/${product.product_image }">
+					<img alt="product_detail" src="${pageContext.request.contextPath}/resources/img/${product.productDetail }">
 				</div>
 			</div>
 			<!-- 주문 form -->
 			<form action="orderCheck.do?orderer_id=${sessionScope.member.id}" method="get" class="orderForm">
-				<input type="hidden" name="orderList[0].orderer_id" value="${sessionScope.member.id }">
-				<input type="hidden" name="orderList[0].product_id" value="${product.product_id }">
-				<input type="hidden" name="orderList[0].order_quantity" value="">
-				<input type="hidden" name="orderList[0].order_amount" value="">
+				<input type="hidden" name="orderList[0].ordererId" value="${sessionScope.member.id }">
+				<input type="hidden" name="orderList[0].productId" value="${product.productId }">
+				<input type="hidden" name="orderList[0].orderQuantity" value="">
+				<input type="hidden" name="orderList[0].orderAmount" value="">
 			</form>
 		</div>
 	</div>	<!-- class="wrap" -->

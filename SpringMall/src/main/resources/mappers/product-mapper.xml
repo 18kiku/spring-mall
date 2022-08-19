@@ -6,18 +6,22 @@
 
 <mapper namespace="ProductDAO">
 	<resultMap type="product" id="productResult">
-		<result property="product_id" column="product_id"/>
-		<result property="product_category" column="product_category"/>
-		<result property="product_name" column="product_name"/>
-		<result property="product_brand" column="product_brand"/>
-		<result property="product_size" column="product_size"/>
-		<result property="product_color" column="product_color"/>
-		<result property="product_price" column="product_price"/>
-		<result property="discount_rate" column="discount_rate"/>
-		<result property="product_stock" column="product_stock"/>
-		<result property="product_image" column="product_image"/>
-		<result property="product_detail" column="product_detail"/>
-		<result property="reg_date" column="reg_date"/>
+		<result property="productId" column="product_id"/>
+		<result property="productCategory" column="product_category"/>
+		<result property="productName" column="product_name"/>
+		<result property="productBrand" column="product_brand"/>
+		<result property="productSize" column="product_size"/>
+		<result property="productColor" column="product_color"/>
+		<result property="productPrice" column="product_price"/>
+		<result property="discountRate" column="discount_rate"/>
+		<result property="productStock" column="product_stock"/>
+		<result property="productImage" column="product_image"/>
+		<result property="productDetail" column="product_detail"/>
+		<result property="createDate" column="create_date"/>
+		<result property="updateDate" column="update_date"/>
+		
+		<result property="categoryCode" column="category_code"/>
+		<result property="categoryName" column="category_name"/>
 	</resultMap>
 
 	<!-- product 테이블에 행 insert, reg_date 제외 -->
@@ -25,25 +29,25 @@
 		<![CDATA[
 		insert into product(product_id, product_category, product_name, product_brand, product_size, product_color, 
 							product_price, discount_rate, product_stock, product_image, product_detail)
-					values(SEQ_PRODUCT.nextval, #{product_category}, #{product_name}, #{product_brand}, #{product_size}, #{product_color},
-							#{product_price}, #{discount_rate}, #{product_stock}, #{product_image}, #{product_detail}) 
+					values(SEQ_PRODUCT.nextval, #{productCategory}, #{productName}, #{productBrand}, #{productSize}, #{productColor},
+							#{productPrice}, #{discountRate}, #{productStock}, #{productImage}, #{productDetail}) 
 		]]>
 	</insert>
 	
 	<!-- product 테이블에서 product_id가 같은 행을 update, product_id는 제외  -->
 	<update id="updateProduct">
 		<![CDATA[
-		update product set product_category=#{product_category}, product_name=#{product_name}, product_brand=#{product_brand}, 
-							product_size=#{product_size}, product_color=#{product_color}, product_price=#{product_price}, discount_rate=#{discount_rate},  
-							product_stock=#{product_stock}, product_image=#{product_image}, product_detail=#{product_detail} 
-		where product_id=#{product_id}
+		update product set product_category=#{productCategory}, product_name=#{productName}, product_brand=#{productBrand}, 
+							product_size=#{productSize}, product_color=#{productColor}, product_price=#{productPrice}, discount_rate=#{discountRate},  
+							product_stock=#{productStock}, product_image=#{productImage}, product_detail=#{productDetail}, update_date=sysdate
+		where product_id=#{productId}
 		]]>
 	</update>
 	
 	<!-- product 테이블에서 product_id가 같은 행 delete -->
 	<delete id="deleteProduct">
 		<![CDATA[
-		delete from product where product_id=#{product_id}
+		delete from product where product_id=#{productId}
 		]]>
 	</delete>
 	
@@ -64,7 +68,7 @@
 	<!-- product 테이블에서 product_id가 같은 행 select -->
 	<select id="getProduct" resultMap="productResult">
 		<![CDATA[
-		select * from product where product_id=#{product_id}
+		select * from product where product_id=#{productId}
 		]]>
 	</select>
 	

@@ -157,48 +157,48 @@
         let tel = $(".input_tel").val();
         let postcode = $(".input_postcode").val();
         let address = $(".input_address").val();
-        let address_detail = $(".input_address_detail").val();
+        let addressDetail = $(".input_address_detail").val();
         /* 상품정보 */
-        let form_contents = '';
+        let formContents = '';
         $(".td_table_products_price").each(function (index, element) {
-            let order_id = uid;
-            let orderer_id = $("input[name='orderer_id']").val();
-        	let product_id = $(element).find(".input_individual_product_id").val();
-            let order_quantity = $(element).find(".input_individual_order_quantity").val();
-            let order_amount = $(element).find(".input_individual_order_amount").val();
+            let orderId = uid;
+            let ordererId = $("input[name='ordererId']").val();
+        	let productId = $(element).find(".input_individual_product_id").val();
+            let orderQuantity = $(element).find(".input_individual_order_quantity").val();
+            let orderAmount = $(element).find(".input_individual_order_amount").val();
             
             
-            let order_id_input = "<input name='orderList[" + index + "].order_id' type='hidden' value='" + order_id + "'>";
-            form_contents += order_id_input;
+            let orderId_input = "<input name='orderList[" + index + "].orderId' type='hidden' value='" + orderId + "'>";
+            formContents += order_id_input;
             
-            let orderer_id_input = "<input name='orderList[" + index + "].orderer_id' type='hidden' value='" + orderer_id + "'>";
-            form_contents += orderer_id_input;
+            let ordererId_input = "<input name='orderList[" + index + "].ordererId' type='hidden' value='" + ordererId + "'>";
+            formContents += orderer_id_input;
             
-            let product_id_input = "<input name='orderList[" + index + "].product_id' type='hidden' value='" + product_id + "'>";
-            form_contents += product_id_input;
+            let productId_input = "<input name='orderList[" + index + "].productId' type='hidden' value='" + productId + "'>";
+            formContents += product_id_input;
             
-            let order_quantity_input = "<input name='orderList[" + index + "].order_quantity' type='hidden' value='" + order_quantity + "'>";
-            form_contents += order_quantity_input;
+            let orderQuantity_input = "<input name='orderList[" + index + "].orderQuantity' type='hidden' value='" + orderQuantity + "'>";
+            formContents += order_quantity_input;
             
-            let order_amount_input = "<input name='orderList[" + index + "].order_amount' type='hidden' value='" + order_amount + "'>";
-            form_contents += order_amount_input;
+            let orderAmount_input = "<input name='orderList[" + index + "].orderAmount' type='hidden' value='" + orderAmount + "'>";
+            formContents += order_amount_input;
             
             let addressee_input = "<input name='orderList[" + index + "].addressee' type='hidden' value='" + addressee + "'>";
-            form_contents += addressee_input;
+            formContents += addressee_input;
             
             let tel_input = "<input name='orderList[" + index + "].tel' type='hidden' value='" + tel + "'>";
-            form_contents += tel_input;
+            formContents += tel_input;
             
             let postcode_input = "<input name='orderList[" + index + "].postcode' type='hidden' value='" + postcode + "'>";
-            form_contents += postcode_input;
+            formContents += postcode_input;
             
             let address_input = "<input name='orderList[" + index + "].address' type='hidden' value='" + address + "'>";
-            form_contents += address_input;
+            formContents += address_input;
             
-            let address_detail_input = "<input name='orderList[" + index + "].address_detail' type='hidden' value='" + address_detail + "'>";
-            form_contents += address_detail_input;
+            let addressDetail_input = "<input name='orderList[" + index + "].addressDetail' type='hidden' value='" + addressDetail + "'>";
+            formContents += addresDetail_input;
         });
-        $(".order_form").append(form_contents);
+        $(".order_form").append(formContents);
         /* 서버 전송 */
         $(".order_form").submit();
     };
@@ -207,10 +207,10 @@
         let tel = $(".input_tel").val();
         let postcode = $(".input_postcode").val();
         let address = $(".input_address").val();
-        let address_detail = $(".input_address_detail").val();
+        let addressDetail = $(".input_address_detail").val();
         
         alert("정보 확인 : " + "\naddressee : " + addressee + "\ntel : " + tel + "\npostcode : " + postcode
-        		+ "\naddress : " + address + "\naddress_detail : " + address_detail);
+        		+ "\naddress : " + address + "\naddress_detail : " + addressDetail);
     }
 </script>
 
@@ -281,7 +281,7 @@
 									<input type="hidden" class="member_tel" value="${member.tel }">
 									<input type="hidden" class="member_postcode" value="${member.postcode}">
 									<input type="hidden" class="member_address" value="${member.address}">
-									<input type="hidden" class="member_address_detail" value="${member.address_detail}">
+									<input type="hidden" class="member_address_detail" value="${member.addressDetail}">
 								</td>
 							</tr>
 							</tbody>
@@ -327,22 +327,22 @@
 					<tr>
 						<td>
 							<div class="image_wrap">
-								<img alt="product_image" src="${pageContext.request.contextPath}/resources/img/${order.product_image }">
+								<img alt="product_image" src="${pageContext.request.contextPath}/resources/img/${order.productImage }">
 							</div>
 						</td>
 						<td class="td_table_products_name">
-							${order.product_name}
-							<input type="hidden" class="input_product_name" value="${order.product_name}">
+							${order.productName}
+							<input type="hidden" class="input_product_name" value="${order.productName}">
 						</td>
 						<td class="td_table_products_price">
-							<fmt:formatNumber value="${order.salePrice}" pattern="#,### 원"/> | 수량 ${order.order_quantity}개 <br>
-							<fmt:formatNumber value="${order.order_amount}" pattern="#,### 원"/>
+							<fmt:formatNumber value="${order.salePrice}" pattern="#,### 원"/> | 수량 ${order.orderQuantity}개 <br>
+							<fmt:formatNumber value="${order.orderAmount}" pattern="#,### 원"/>
 							<br>
-							<input type="hidden" class="input_individual_product_price" value="${order.product_price}">
+							<input type="hidden" class="input_individual_product_price" value="${order.productPrice}">
 							<input type="hidden" class="input_individual_salePrice" value="${order.salePrice}">
-							<input type="hidden" class="input_individual_order_quantity" value="${order.order_quantity}">
-							<input type="hidden" class="input_individual_order_amount" value="${order.order_amount}">
-							<input type="hidden" class="input_individual_product_id" value="${order.product_id}">
+							<input type="hidden" class="input_individual_order_quantity" value="${order.orderQuantity}">
+							<input type="hidden" class="input_individual_order_amount" value="${order.orderAmount}">
+							<input type="hidden" class="input_individual_product_id" value="${order.productId}">
 						</td>
 					</tr>
 					</c:forEach>
@@ -380,8 +380,8 @@
 			<!-- 주문 완료 form -->
 			<form class="order_form" action="orderInsert.do" method="post">
 				<!-- 주문자 아이디 -->
-				<input type="hidden" name="order_id">
-				<input type="hidden" name="orderer_id" value="${member.id}">
+				<input type="hidden" name="orderId">
+				<input type="hidden" name="ordererId" value="${member.id}">
 				<!-- 상품 정보 -->
 			</form>
 			<input type="button" class="btn_test" onclick="test()" value="test">

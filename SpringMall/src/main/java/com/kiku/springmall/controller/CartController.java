@@ -20,11 +20,15 @@ public class CartController {
 	
 	/* member가 cart안의 상품 리스트를 조회 요청*/
 	@RequestMapping(value="/cartList.do")
-	public String cartList(CartDTO dto, Model model, HttpSession session) {
+	public String cartList(Model model, HttpSession session) {
 		MemberDTO member = (MemberDTO)session.getAttribute("member"); // cart는 login 상태여야 하기 때문에 member 체크
 		if(member != null) {
-			dto.setOrderer_id(member.getId()); // login 상태라면 member의 id값 추가
-			model.addAttribute("cartList", cartService.getCartList(dto)); // service에게 cartList 요청 
+			CartDTO cart = new CartDTO();
+			cart.setOrdererId(member.getId()); // login 상태라면 member의 id값 추가
+			model.addAttribute("cartList", cartService.getCartList(cart)); // service에게 cartList 요청 
+			for(CartDTO c: cartService.getCartList(cart)) {
+				System.out.println("카트 => " + c);
+			}
 			return "cart.list";
 		}
 		
@@ -63,6 +67,7 @@ public class CartController {
 	@ResponseBody
 	@RequestMapping(value="/cartUpdate.do")
 	public int updateCart(CartDTO dto, HttpSession session) {
+		System.out.println("업데이트 " + dto);
 		MemberDTO member = (MemberDTO)session.getAttribute("member"); // login 체크
 		if(member == null) {
 			return 10917; // login 페이지로 보내는 코드 번호
@@ -75,12 +80,25 @@ public class CartController {
 	@ResponseBody
 	@RequestMapping(value="/cartDelete.do")
 	public int deleteCart(CartDTO dto, HttpSession session) {
+		System.out.println("딜리트 " + dto);
 		MemberDTO member = (MemberDTO)session.getAttribute("member");
 		if(member == null) {
 			return 10917; // login 페이지로 보내는 코드 번호
 		}
 		
 		return cartService.deleteCart(dto); // delete 작업이 완료된 행 개수 반환
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/cartDeleteById.do")
+	public int deleteCartById(CartDTO dto, HttpSession session) {
+		System.out.println("딜리트 " + dto);
+		MemberDTO member = (MemberDTO)session.getAttribute("member");
+		if(member == null) {
+			return 10917; // login 페이지로 보내는 코드 번호
+		}
+		
+		return cartService.deleteCartById(dto); // delete 작업이 완료된 행 개수 반환
 	}
 	
 }

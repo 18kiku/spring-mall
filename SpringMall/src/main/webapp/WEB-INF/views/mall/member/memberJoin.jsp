@@ -138,9 +138,9 @@
 				form.address.focus();
 				return;
 			}
-			if(form.address_detail.value.length == 0){
+			if(form.addressDetail.value.length == 0){
 				alert(`상세주소를 입력해주세요.`);
-				form.address_detail.focus();
+				form.addressDetail.focus();
 				return;
 			}
 			form.submit();
@@ -233,7 +233,7 @@
 		<td>
 			<input type="button" value="주소찾기" id="btn_address"><br>
 			<input type="text" name="address" id="address" size=49><br>
-			<input type="text" name="address_detail" id="address_detail" size=49>
+			<input type="text" name="addressDetail" id="address_detail" size=49>
 			<input type="hidden" name="postcode" id="postcode">
 		</td>
 	</tr>

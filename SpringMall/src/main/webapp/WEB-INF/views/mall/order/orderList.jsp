@@ -38,32 +38,31 @@
 						<c:forEach items="${orderList}" var="order" varStatus="status">
 							<tr>
 								<td class="td_width_1 td_order_list">
-									${order.order_id }						
+									${order.orderId }						
 								</td>
 								<td class="td_width_2">
 									<div>
-										<img alt="product_image" src="/resources/img/${order.product_image }" width="60" height="60">
+										<img alt="product_image" src="${pageContext.request.contextPath}/resources/img/${order.productImage }" width="60" height="60">
 									</div>								
 								</td>
-								<td class="td_width_3">${order.product_name}</td>
+								<td class="td_width_3">${order.productName}</td>
 								<td class="td_width_4 td_price">
-									<div class="list_price">정가 : <fmt:formatNumber value="${order.product_price}" pattern="#,### 원" /></div><br>
-									<%-- 판매가 : <span class="red_color"><fmt:formatNumber value="${order.product_price - (order.product_price*order.discount_rate/100)}" pattern="#,### 원" /></span> --%>
+									<div class="list_price">정가 : <fmt:formatNumber value="${order.productPrice}" pattern="#,### 원" /></div><br>
 									판매가 : <span class="red_color"><fmt:formatNumber value="${order.salePrice}" pattern="#,### 원" /></span>
 								</td>
 								<td class="td_width_5 table_text_align_center">
 									<div class="table_text_align_center div_quantity">
-										<span>${order.order_quantity}</span>
+										<span>${order.orderQuantity}</span>
 									</div>
 								</td>
 								<td class="td_width_6 table_text_align_center">
-									<fmt:formatNumber value="${order.order_amount}" pattern="#,### 원" />
+									<fmt:formatNumber value="${order.orderAmount}" pattern="#,### 원" />
 								</td>
 								<td class="td_width_7 table_text_align_center">
-									<fmt:formatDate value="${order.order_date}" pattern="yy-mm-dd" />
+									<fmt:formatDate value="${order.orderDate}" pattern="yy-mm-dd" />
 								</td>
 								<td class="td_width_8 table_text_align_center">
-									${order.delivery_state }
+									${order.deliveryState }
 								</td>
 							</tr>
 						</c:forEach>

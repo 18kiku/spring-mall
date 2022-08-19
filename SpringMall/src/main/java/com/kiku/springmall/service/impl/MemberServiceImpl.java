@@ -50,7 +50,7 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public void deleteMember(MemberDTO dto) {
 		CartDTO cart = new CartDTO();
-		cart.setOrderer_id(dto.getId());
+		cart.setOrdererId(dto.getId());
 		cartDAO.deleteCartById(cart);
 		
 		memberDAO.deleteMember(dto);

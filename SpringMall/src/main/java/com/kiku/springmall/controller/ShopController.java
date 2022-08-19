@@ -15,7 +15,6 @@ import com.kiku.springmall.service.ProductDTO;
 import com.kiku.springmall.service.ProductService;
 
 @Controller
-@SessionAttributes
 public class ShopController {
 	
 	@Autowired
@@ -31,10 +30,11 @@ public class ShopController {
 	@RequestMapping(value="/shopList.do")
 	public String shopList(ProductDTO dto, Model model, BlockDTO block) {
 		dto.setSearchCondition("PRODUCT_CATEGORY"); // shopList는 카테고리별 리스트를 출력하기 때문에 searchCondition은 항상 PRODUCT_CATEGORY
-		dto.setSearchKeyword(dto.getProduct_category()); // 검색을 위한 category 값을 setting
+		dto.setSearchKeyword(dto.getProductCategory()); // 검색을 위한 category 값을 setting
 		
 		int totalCount = productService.getProductCount(dto); // 페이징 처리를 위해 상품 개수 조회
 		model.addAttribute("pageDTO", new PageDTO(block, totalCount)); // 페이징 처리
+		System.out.println(dto);
 		model.addAttribute("productList", productService.getProductList(dto, block)); // 상품 목록 조회
 		
 		return "shop.list"; // 카테고리별 상품 목록 페이지

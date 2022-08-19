@@ -25,7 +25,6 @@ import com.kiku.springmall.service.ProductService;
 import com.kiku.springmall.util.Util;
 
 @Controller
-@SessionAttributes
 public class ProductController {
 	
 	@Autowired
@@ -42,24 +41,24 @@ public class ProductController {
 	/* productInsert.jsp -> 상품 추가 처리, form의 인코딩타입은 multipart -> MultipartHttpServletRequest로 file 요청 처리*/
 	@PostMapping(value="/productInsert.do")
 	public String insertProduct(ProductDTO dto, MultipartHttpServletRequest request) {
-		if(request.getFiles("product_images").isEmpty()) {
+		if(request.getFiles("productImages").isEmpty()) {
 			File fileCheck = new File(UPLOAD_PATH); // 패스 체크
 			if(!fileCheck.exists()) fileCheck.mkdirs(); // 폴더가 없다면 생성
 			
-			List<MultipartFile> product_images = request.getFiles("product_images");
-			dto.setProduct_image(String.join(",", Util.saveFile(product_images)));			
+			List<MultipartFile> productImages = request.getFiles("productImages");
+			dto.setProductImage(String.join(",", Util.saveFile(productImages)));			
 		} else {
-			dto.setProduct_image(/* UPLOAD_PATH + */ "no-image.jpg");
+			dto.setProductImage(/* UPLOAD_PATH + */ "no-image.jpg");
 		}
-		if(!request.getFiles("product_details").isEmpty()) {
+		if(!request.getFiles("productDetails").isEmpty()) {
 			File fileCheck = new File(UPLOAD_PATH); // 패스 체크
 			if(!fileCheck.exists()) fileCheck.mkdirs(); // 폴더가 없다면 생성
 			
-			List<MultipartFile> product_details = request.getFiles("product_details"); // file 타입의 input태그에 multiple 속성을 주었기 때문에 List로 값을 받는다
-			dto.setProduct_detail(String.join(",", Util.saveFile(product_details))); // Util 클래스의 saveFile메서드 사용, 
+			List<MultipartFile> productDetails = request.getFiles("productDetails"); // file 타입의 input태그에 multiple 속성을 주었기 때문에 List로 값을 받는다
+			dto.setProductDetail(String.join(",", Util.saveFile(productDetails))); // Util 클래스의 saveFile메서드 사용, 
 																					//String 클래스의 join메서드로 리스트를 문자열로 변환 후 property에 저장
 		} else {
-			dto.setProduct_detail(/* UPLOAD_PATH + */ "no-detail.jpg"); // 파일을 추가하지 않았다면 product 테이블의 product_detail의 default값을 property에 저장 
+			dto.setProductDetail(/* UPLOAD_PATH + */ "no-detail.jpg"); // 파일을 추가하지 않았다면 product 테이블의 product_detail의 default값을 property에 저장 
 		}
 		
 		productService.insertProduct(dto); // product 추가 처리
@@ -71,24 +70,24 @@ public class ProductController {
 	 * insertProduct 메소드와 동일하니 해당 메소드의 주석 참조*/
 	@RequestMapping(value="/productUpdate.do")
 	public String updateProduct(@ModelAttribute("product")ProductDTO dto, MultipartHttpServletRequest request) {
-		if(dto.getProduct_image()!= null) {
+		if(dto.getProductImage()!= null) {
 			File fileCheck = new File(UPLOAD_PATH); // 패스 체크
 			if(!fileCheck.exists()) fileCheck.mkdirs(); // 폴더가 없다면 생성
 			
-			List<MultipartFile> product_images = request.getFiles("product_images");
-			dto.setProduct_image(String.join(",", Util.saveFile(product_images)));
+			List<MultipartFile> productImages = request.getFiles("productImages");
+			dto.setProductImage(String.join(",", Util.saveFile(productImages)));
 		} else {
-			dto.setProduct_image(request.getParameter("no_image"));
+			dto.setProductImage(request.getParameter("no_image"));
 		}
 		
-		if(dto.getProduct_detail()!= null) {
+		if(dto.getProductDetail()!= null) {
 			File fileCheck = new File(UPLOAD_PATH);
 			if(!fileCheck.exists()) fileCheck.mkdirs();
 			
-			List<MultipartFile> product_details = request.getFiles("product_details"); // file 관련 설명은 insert메소드 참조
-			dto.setProduct_detail(String.join(",", Util.saveFile(product_details)));
+			List<MultipartFile> productDetails = request.getFiles("productDetails"); // file 관련 설명은 insert메소드 참조
+			dto.setProductDetail(String.join(",", Util.saveFile(productDetails)));
 		} else {
-			dto.setProduct_detail(request.getParameter("no_detail"));
+			dto.setProductDetail(request.getParameter("no_detail"));
 		}
 		
 		productService.updateProduct(dto);
