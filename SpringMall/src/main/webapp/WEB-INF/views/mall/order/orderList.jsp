@@ -35,37 +35,43 @@
 				<table class="table_list">
 					<caption>표 내용 부분</caption>
 					<tbody>
-						<c:forEach items="${orderList}" var="order" varStatus="status">
-							<tr>
-								<td class="td_width_1 td_order_list">
-									${order.orderId }						
-								</td>
-								<td class="td_width_2">
-									<div>
-										<img alt="product_image" src="${pageContext.request.contextPath}/resources/img/${order.productImage }" width="60" height="60">
-									</div>								
-								</td>
-								<td class="td_width_3">${order.productName}</td>
-								<td class="td_width_4 td_price">
-									<div class="list_price">정가 : <fmt:formatNumber value="${order.productPrice}" pattern="#,### 원" /></div><br>
-									판매가 : <span class="red_color"><fmt:formatNumber value="${order.salePrice}" pattern="#,### 원" /></span>
-								</td>
-								<td class="td_width_5 table_text_align_center">
-									<div class="table_text_align_center div_quantity">
-										<span>${order.orderQuantity}</span>
-									</div>
-								</td>
-								<td class="td_width_6 table_text_align_center">
-									<fmt:formatNumber value="${order.orderAmount}" pattern="#,### 원" />
-								</td>
-								<td class="td_width_7 table_text_align_center">
-									<fmt:formatDate value="${order.orderDate}" pattern="yy-mm-dd" />
-								</td>
-								<td class="td_width_8 table_text_align_center">
-									${order.deliveryState }
-								</td>
-							</tr>
-						</c:forEach>
+						<c:if test="${orderList[0] == null }">
+							<td colspan="8" class="center">주문 목록이 없습니다.</td>
+						</c:if>
+						<c:if test="${orderList[0] != null }">
+							<c:forEach items="${orderList}" var="order" varStatus="status">
+								<tr>
+									<td class="td_width_1 td_order_list">
+										${order.orderId }						
+									</td>
+									<td class="td_width_2">
+										<div>
+											<img alt="product_image" src="${pageContext.request.contextPath}/resources/img/${order.productImage }" width="60" height="60">
+										</div>								
+									</td>
+									<td class="td_width_3">${order.productName}</td>
+									<td class="td_width_4 td_price">
+										<div class="list_price">정가 : <fmt:formatNumber value="${order.productPrice}" pattern="#,### 원" /></div><br>
+										판매가 : <span class="red_color"><fmt:formatNumber value="${order.salePrice}" pattern="#,### 원" /></span>
+									</td>
+									<td class="td_width_5 table_text_align_center">
+										<div class="table_text_align_center div_quantity">
+											<span>${order.orderQuantity}</span>
+										</div>
+									</td>
+									<td class="td_width_6 table_text_align_center">
+										<fmt:formatNumber value="${order.orderAmount}" pattern="#,### 원" />
+									</td>
+									<td class="td_width_7 table_text_align_center">
+										<fmt:formatDate value="${order.orderDate}" pattern="yy-mm-dd" />
+									</td>
+									<td class="td_width_8 table_text_align_center">
+										${order.deliveryState }
+									</td>
+								</tr>
+							</c:forEach>
+						</c:if>
+						
 					</tbody>
 				</table>
 			</div>

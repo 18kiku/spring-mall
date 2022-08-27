@@ -23,11 +23,11 @@ public class Adivce {
 
 		System.out.printf("%s.%s(%s)\n", jp.getTarget().getClass()
         		.getSimpleName(), jp.getSignature().getName(), Arrays.toString(jp.getArgs()));
-		
+		/*
 		Timestamp now = new Timestamp(System.currentTimeMillis());
 		System.out.println("now : " + now.toString() + "\n");
 		
-		String file = "c:/logs/SpringMall.log";
+		String file = "/var/lib/tomcat9/webapps/logs";
 		PrintWriter pw = null;
 		
 		try {
@@ -38,5 +38,6 @@ public class Adivce {
 		} finally {
 			pw.close();
 		}
+		*/
 	}
 }

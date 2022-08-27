@@ -178,3 +178,6 @@ th {
 .p_box_bold {
     font-weight: 900;
 }
+.center {
+	text-align: center;
+}

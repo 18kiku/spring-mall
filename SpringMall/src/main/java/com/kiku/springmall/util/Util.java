@@ -11,7 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class Util {
 
-	private static final String UPLOAD_PATH = "C:\\spring_images\\mall\\";
+	private static final String UPLOAD_PATH = "/var/lib/tomcat9/webapps/upload/";
 	
 	public static String shortUUID() {
 		UUID uuid = UUID.randomUUID();

@@ -46,12 +46,14 @@
 		// 비밀번호와 비밀번호 확인의 내용이 동일한지 유무를 판단.
 		let chk_password2 = document.getElementById("chk_password2");
 		form.password2.addEventListener("keyup", function(){
-			if(form.password.value == form.password2.value){
-				chk_password2.innerText = "비밀번호가 일치합니다."
-				chk_password2.style.color = "blue";
-			} else{
-				chk_password2.innerText = "비밀번호가 일치하지 않습니다."
-				chk_password2.style.color = "red";
+			if(form.password2.value.length > 0){
+				if(form.password.value == form.password2.value){
+					chk_password2.innerText = "비밀번호가 일치합니다."
+					chk_password2.style.color = "blue";
+				} else{
+					chk_password2.innerText = "비밀번호가 일치하지 않습니다."
+					chk_password2.style.color = "red";
+				}	
 			}
 		})
 		// 이메일 검사 함수
@@ -81,6 +83,7 @@
 				oncomplete:function(data){
 					form.address.value = data.address;
 					form.postcode.value = data.zonecode;
+					form.addressDetail.focus();
 				}
 			}).open();
 		})
@@ -143,6 +146,11 @@
 				form.addressDetail.focus();
 				return;
 			}
+			if(form.postcode.value.length == 0){
+				alert(`주소를 다시 입력해주세요.`);
+				form.address.focus();
+				return;
+			}
 			form.submit();
 		})
 		let btn_cancel = document.getElementById("btn_cancel");
@@ -198,7 +206,7 @@
 			생년월일
 		</th>
 		<td>
-			<input type="text" name="birth" id="birth" size=15>
+			<input type="text" name="birth" id="birth" size=15 placeholder="1995-06-30">
 		</td>
 	</tr>
 	<tr>
@@ -206,7 +214,7 @@
 			성별
 		</th>
 		<td>
-			<input type="text" name="gender" id="gender" size=15>
+			<input type="text" name="gender" id="gender" size=15 placeholder="남 or 여">
 		</td>
 	</tr>
 	<tr>
@@ -223,7 +231,7 @@
 			전화번호
 		</th>
 		<td>
-			<input type="tel" name="tel" id="tel">
+			<input type="tel" name="tel" id="tel" placeholder="010-0000-0000">
 		</td>
 	</tr>
 	<tr class="addr_row">
@@ -232,8 +240,8 @@
 		</th>
 		<td>
 			<input type="button" value="주소찾기" id="btn_address"><br>
-			<input type="text" name="address" id="address" size=49><br>
-			<input type="text" name="addressDetail" id="address_detail" size=49>
+			<input type="text" name="address" id="address" size=49 readonly><br>
+			<input type="text" name="addressDetail" id="address_detail" size=49 placeholder="101동 101호">
 			<input type="hidden" name="postcode" id="postcode">
 		</td>
 	</tr>

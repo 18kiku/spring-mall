@@ -384,7 +384,6 @@
 				<input type="hidden" name="ordererId" value="${member.id}">
 				<!-- 상품 정보 -->
 			</form>
-			<input type="button" class="btn_test" onclick="test()" value="test">
 		</div>
 	</div>
 	<!-- class="wrap" -->

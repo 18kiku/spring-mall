@@ -20,6 +20,11 @@ public class ShopController {
 	@Autowired
 	private ProductService productService;
 	
+	@RequestMapping(value = "/")
+	public String shop() {
+		return "redirect:shopMain.do";
+	}
+	
 	/* 본 프로젝트의 메인 페이지 View밖에 없다. 값은 없음*/
 	@RequestMapping(value="/shopMain.do")
 	public String shopMain() {

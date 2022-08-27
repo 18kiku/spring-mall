@@ -217,7 +217,7 @@
 				<!-- 체크박스 전체 여부 -->
 				<div class="div_all_input">
 					<span class="span_all_check"><input type="checkbox" class="input_all_check input_size_20" checked="checked">전체선택</span>
-					<input type="button" class="input_all_delete input_size_4020" data-orderer-id="${member.id }" value="전체 삭제">
+					<input type="button" class="input_all_delete" data-orderer-id="${member.id }" value="전체 삭제">
 				</div>			
 				<div class="clearfix"></div>
 				
