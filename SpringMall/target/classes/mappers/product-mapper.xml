@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "..//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ProductDAO">
+	<resultMap type="product" id="productResult">
+		<result property="productId" column="product_id"/>
+		<result property="productCategory" column="product_category"/>
+		<result property="productName" column="product_name"/>
+		<result property="productBrand" column="product_brand"/>
+		<result property="productSize" column="product_size"/>
+		<result property="productColor" column="product_color"/>
+		<result property="productPrice" column="product_price"/>
+		<result property="discountRate" column="discount_rate"/>
+		<result property="productStock" column="product_stock"/>
+		<result property="productImage" column="product_image"/>
+		<result property="productDetail" column="product_detail"/>
+		<result property="createDate" column="create_date"/>
+		<result property="updateDate" column="update_date"/>
+		
+		<result property="categoryCode" column="category_code"/>
+		<result property="categoryName" column="category_name"/>
+	</resultMap>
+
+	<!-- product 테이블에 행 insert, reg_date 제외 -->
+	<insert id="insertProduct">
+		<![CDATA[
+		insert into product(product_id, product_category, product_name, product_brand, product_size, product_color, 
+							product_price, discount_rate, product_stock, product_image, product_detail)
+					values(SEQ_PRODUCT.nextval, #{productCategory}, #{productName}, #{productBrand}, #{productSize}, #{productColor},
+							#{productPrice}, #{discountRate}, #{productStock}, #{productImage}, #{productDetail}) 
+		]]>
+	</insert>
+	
+	<!-- product 테이블에서 product_id가 같은 행을 update, product_id는 제외  -->
+	<update id="updateProduct">
+		<![CDATA[
+		update product set product_category=#{productCategory}, product_name=#{productName}, product_brand=#{productBrand}, 
+							product_size=#{productSize}, product_color=#{productColor}, product_price=#{productPrice}, discount_rate=#{discountRate},  
+							product_stock=#{productStock}, product_image=#{productImage}, product_detail=#{productDetail}, update_date=sysdate
+		where product_id=#{productId}
+		]]>
+	</update>
+	
+	<!-- product 테이블에서 product_id가 같은 행 delete -->
+	<delete id="deleteProduct">
+		<![CDATA[
+		delete from product where product_id=#{productId}
+		]]>
+	</delete>
+	
+	<!-- product 테이블에서 searchCondition에 따라 searchKeword 값이 같은 행의 count를 select -->
+	<select id="getProductCount" resultType="int">
+		<![CDATA[
+		select count(*) from product
+		where 1=1
+		]]>
+		<if test="searchCondition == 'PRODUCT_CATEGORY'">
+		and product_category like '%'||#{searchKeyword}||'%'
+		</if>
+		<if test="searchCondition == 'PRODUCT_NAME'">
+		and product_name like '%'||#{searchKeyword}||'%'
+		</if>
+	</select>
+	
+	<!-- product 테이블에서 product_id가 같은 행 select -->
+	<select id="getProduct" resultMap="productResult">
+		<![CDATA[
+		select * from product where product_id=#{productId}
+		]]>
+	</select>
+	
+	<!-- product 테이블에서 searchCondition에 따라 searchKeword 값이 같은 행 select,
+		 product_category(int)에 매칭되는 category_name(varchar2)도 필요하기 때문에 category 테이블과 join,
+		  페이징 처리를 위해 where 절에 block의 범위 추가 -->
+	<select id="getProductList" parameterType="Map" resultMap="productResult">
+			<![CDATA[
+			select * from (
+			select p.*, row_number() over(order by product_id desc) as rnum 
+			from (select * from product p join category c on p.product_category = c.category_code) p
+			where 1=1
+			]]>
+			<if test="product.searchCondition == 'PRODUCT_CATEGORY'">
+			and product_category like '%'||#{product.searchKeyword}||'%'
+			</if>
+			<if test="product.searchCondition == 'PRODUCT_NAME'">
+			and product_name like '%'||#{product.searchKeyword}||'%'
+			</if>
+			<![CDATA[
+			) where rnum > ((#{block.pageNum}-1) * #{block.amount}) and rnum <= #{block.pageNum} * #{block.amount}
+			order by product_id desc
+			]]>
+		
+	</select>
+</mapper>					
