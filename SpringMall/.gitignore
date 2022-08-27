@@ -3,7 +3,6 @@
 
 config.properties
 target
-pom.properties
 .classpath
 
 ### Eclipse ###
